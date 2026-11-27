@@ -1,0 +1,6 @@
+{
+  "name": "The Dopamine Clarity Project",
+  "description": "Breaking the cycle, sparking a revival. Student-led drug and alcohol addiction awareness, evidence-based education, community stories, and Ontario recovery resources.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

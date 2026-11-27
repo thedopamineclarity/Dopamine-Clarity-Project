@@ -1,0 +1,252 @@
+import React, { useState, useEffect } from 'react';
+import { Phone, Mail, MapPin, CheckCircle2 } from 'lucide-react';
+import { SiteContent } from '../../data/translations';
+
+interface ContactSectionProps {
+  content: SiteContent;
+  defaultRecipient: 'project' | 'newBeginnings';
+}
+
+export const ContactSection: React.FC<ContactSectionProps> = ({
+  content,
+  defaultRecipient,
+}) => {
+  const { contact } = content;
+
+  const [recipient, setRecipient] = useState<'project' | 'newBeginnings'>(
+    defaultRecipient
+  );
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    setRecipient(defaultRecipient);
+  }, [defaultRecipient]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setSubmitted(false);
+
+    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+    if (!name.trim() || !emailValid || !message.trim()) {
+      setError(contact.errorRequired);
+      return;
+    }
+
+    setSubmitted(true);
+    setName('');
+    setEmail('');
+    setPhone('');
+    setMessage('');
+  };
+
+  return (
+    <div className="max-w-6xl mx-auto px-4 sm:px-8 py-12 space-y-12">
+      <header className="max-w-3xl space-y-4">
+        <p className="text-sm font-medium text-[#5841A3]">{contact.eyebrow}</p>
+        <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#231F29] leading-tight [text-wrap:balance]">
+          {contact.title}
+        </h1>
+        <p className="text-base sm:text-lg text-[#433D4D] leading-relaxed">
+          {contact.intro}
+        </p>
+      </header>
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 pt-4 border-t border-[#DFD8EC]">
+        {/* Left: Direct Contact Cards */}
+        <div className="lg:col-span-5 space-y-6">
+          {/* New Beginnings Scarborough Card */}
+          <div className="p-6 sm:p-7 rounded-xl bg-[#F2EEF8] border border-[#D3C9E5] space-y-4">
+            <h2 className="font-serif text-xl font-medium text-[#231F29]">
+              {contact.scarboroughCardTitle}
+            </h2>
+            <p className="text-sm text-[#433D4D] leading-relaxed">
+              {contact.scarboroughCardBody}
+            </p>
+            <div className="space-y-2.5 pt-2 border-t border-[#DFD8EC] text-sm text-[#231F29]">
+              <div className="flex items-center gap-2.5">
+                <Phone className="w-4 h-4 text-[#5841A3] shrink-0" aria-hidden="true" />
+                <a
+                  href="tel:16474826308"
+                  className="font-mono tabular-nums hover:text-[#5841A3] underline underline-offset-4"
+                >
+                  1-647-482-6308
+                </a>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Mail className="w-4 h-4 text-[#5841A3] shrink-0" aria-hidden="true" />
+                <a
+                  href="mailto:info@newbeginningsrecovery.ca"
+                  className="hover:text-[#5841A3] underline underline-offset-4 break-all"
+                >
+                  info@newbeginningsrecovery.ca
+                </a>
+              </div>
+              <div className="flex items-start gap-2.5">
+                <MapPin className="w-4 h-4 text-[#5841A3] shrink-0 mt-0.5" aria-hidden="true" />
+                <span>69 Gradwell Drive, Scarborough, ON M1M 2N1</span>
+              </div>
+            </div>
+          </div>
+
+          {/* The Dopamine Clarity Project Card */}
+          <div className="p-6 sm:p-7 rounded-xl bg-[#FAF8FC] border border-[#DFD8EC] space-y-4">
+            <h2 className="font-serif text-xl font-medium text-[#231F29]">
+              {contact.projectCardTitle}
+            </h2>
+            <p className="text-sm text-[#433D4D] leading-relaxed">
+              {contact.projectCardBody}
+            </p>
+            <div className="pt-2 border-t border-[#E6DFF3] text-sm text-[#231F29]">
+              <div className="flex items-center gap-2.5">
+                <Mail className="w-4 h-4 text-[#5841A3] shrink-0" aria-hidden="true" />
+                <a
+                  href="mailto:thedopamineclarityproject@gmail.com"
+                  className="hover:text-[#5841A3] underline underline-offset-4 break-all"
+                >
+                  thedopamineclarityproject@gmail.com
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right: Contact Form */}
+        <form
+          onSubmit={handleSubmit}
+          noValidate
+          className="lg:col-span-7 p-6 sm:p-8 rounded-xl bg-[#F2EEF8] border border-[#DFD8EC] space-y-5"
+        >
+          <h2 className="font-serif text-2xl font-medium text-[#231F29]">
+            {contact.formTitle}
+          </h2>
+
+          {submitted && (
+            <div className="rounded-lg bg-[#EFEBF8] border border-[#5841A3]/30 p-4 space-y-1">
+              <div className="flex items-center gap-2 text-sm font-semibold text-[#5841A3]">
+                <CheckCircle2 className="w-4 h-4 shrink-0" aria-hidden="true" />
+                <span>{contact.successTitle}</span>
+              </div>
+              <p className="text-xs sm:text-sm text-[#231F29] leading-relaxed">
+                {contact.successBody}
+              </p>
+            </div>
+          )}
+
+          {error && (
+            <p
+              role="alert"
+              className="rounded-lg bg-[#FCEEEB] border border-[#B94A38]/40 px-4 py-3 text-xs sm:text-sm text-[#7F291A]"
+            >
+              {error}
+            </p>
+          )}
+
+          <div className="space-y-2">
+            <label
+              htmlFor="contact-recipient"
+              className="block text-sm font-medium text-[#231F29]"
+            >
+              {contact.recipientLabel}
+            </label>
+            <select
+              id="contact-recipient"
+              value={recipient}
+              onChange={(e) =>
+                setRecipient(e.target.value as 'project' | 'newBeginnings')
+              }
+              className="w-full px-3.5 py-2.5 text-sm rounded-lg bg-[#FAF8FC] border border-[#D3C9E5] text-[#231F29] focus:outline-2 focus:outline-[#5841A3]"
+            >
+              <option value="project">{contact.recipientOptions.project}</option>
+              <option value="newBeginnings">
+                {contact.recipientOptions.newBeginnings}
+              </option>
+            </select>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-1.5">
+              <label
+                htmlFor="contact-name"
+                className="block text-sm font-medium text-[#231F29]"
+              >
+                {contact.nameLabel}
+              </label>
+              <input
+                id="contact-name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full px-3.5 py-2.5 text-sm rounded-lg bg-[#FAF8FC] border border-[#D3C9E5] text-[#231F29] focus:outline-2 focus:outline-[#5841A3]"
+              />
+            </div>
+
+            <div className="space-y-1.5">
+              <label
+                htmlFor="contact-email"
+                className="block text-sm font-medium text-[#231F29]"
+              >
+                {contact.emailLabel}
+              </label>
+              <input
+                id="contact-email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-3.5 py-2.5 text-sm rounded-lg bg-[#FAF8FC] border border-[#D3C9E5] text-[#231F29] focus:outline-2 focus:outline-[#5841A3]"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-1.5">
+            <label
+              htmlFor="contact-phone"
+              className="block text-sm font-medium text-[#231F29]"
+            >
+              {contact.phoneLabel}{' '}
+              <span className="text-xs font-normal text-[#615A6D]">
+                {contact.phoneOptional}
+              </span>
+            </label>
+            <input
+              id="contact-phone"
+              type="tel"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className="w-full px-3.5 py-2.5 text-sm rounded-lg bg-[#FAF8FC] border border-[#D3C9E5] text-[#231F29] focus:outline-2 focus:outline-[#5841A3]"
+            />
+          </div>
+
+          <div className="space-y-1.5">
+            <label
+              htmlFor="contact-message"
+              className="block text-sm font-medium text-[#231F29]"
+            >
+              {contact.messageLabel}
+            </label>
+            <textarea
+              id="contact-message"
+              rows={5}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder={contact.messagePlaceholder}
+              className="w-full px-3.5 py-2.5 text-sm rounded-lg bg-[#FAF8FC] border border-[#D3C9E5] text-[#231F29] placeholder:text-[#8E869D] leading-relaxed focus:outline-2 focus:outline-[#5841A3]"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full sm:w-auto py-3 px-7 text-sm font-medium text-[#FAF8FC] bg-[#5841A3] hover:bg-[#463287] rounded-lg transition-colors cursor-pointer"
+          >
+            {contact.submitButton}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
