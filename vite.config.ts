@@ -4,8 +4,12 @@ import fs from 'fs';
 import path from 'path';
 import {defineConfig} from 'vite';
 
-export default defineConfig(() => {
+export default defineConfig(({command}) => {
   return {
+    base:
+      command === 'build'
+        ? (process.env.VITE_BASE_PATH ?? '/Dopamine-Clarity-Project/')
+        : '/',
     plugins: [
       react(),
       tailwindcss(),

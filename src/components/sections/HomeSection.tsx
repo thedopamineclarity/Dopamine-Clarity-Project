@@ -81,7 +81,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
             <figure className="h-full flex flex-col">
               <div className="flex-1 overflow-hidden rounded-xl border border-[#DFD8EC] bg-[#F2EEF8]">
                 <ResilientImage
-                  src="/src/assets/images/hero_sanctuary_morning_1795746663422.jpg"
+                  src={`${import.meta.env.BASE_URL}src/assets/images/hero_sanctuary_morning_1795746663422.jpg`}
                   alt={home.heroImageAlt}
                   aspectClassName="aspect-[16/9]"
                   className="w-full h-full object-cover min-h-[280px] lg:min-h-[380px]"
@@ -215,7 +215,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
           <div className="lg:col-span-6">
             <div className="h-full overflow-hidden rounded-xl border border-[#DFD8EC] bg-[#F2EEF8]">
               <ResilientImage
-                src="/src/assets/images/community_circle_support_1795746664233.jpg"
+                src={`${import.meta.env.BASE_URL}src/assets/images/community_circle_support_1795746664233.jpg`}
                 alt={about.communityImageAlt}
                 aspectClassName="aspect-[4/3]"
                 className="w-full h-full object-cover min-h-[280px]"
@@ -366,7 +366,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch rounded-xl bg-[#FAF8FC] border border-[#DFD8EC] overflow-hidden">
           <div className="lg:col-span-5 bg-[#F2EEF8]">
             <ResilientImage
-              src="/src/assets/images/scarborough_bluffs_calm_1795746664860.jpg"
+              src={`${import.meta.env.BASE_URL}src/assets/images/scarborough_bluffs_calm_1795746664860.jpg`}
               alt={resources.newBeginnings.imageAlt}
               aspectClassName="aspect-[4/3]"
               className="w-full h-full object-cover min-h-[250px]"

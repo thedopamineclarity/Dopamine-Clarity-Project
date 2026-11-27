@@ -129,7 +129,7 @@ export const JournalSection: React.FC<JournalSectionProps> = ({ content }) => {
         <div className="lg:col-span-5">
           <div className="h-full overflow-hidden rounded-xl border border-[#DFD8EC] bg-[#F2EEF8]">
             <ResilientImage
-              src="/src/assets/images/journal_reflection_notebook_1795746665578.jpg"
+              src={`${import.meta.env.BASE_URL}src/assets/images/journal_reflection_notebook_1795746665578.jpg`}
               alt={journal.imageAlt}
               aspectClassName="aspect-[4/3]"
               className="w-full h-full object-cover min-h-[240px]"

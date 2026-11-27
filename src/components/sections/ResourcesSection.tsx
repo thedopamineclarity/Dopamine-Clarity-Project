@@ -72,7 +72,7 @@ export const ResourcesSection: React.FC<ResourcesSectionProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
           <div className="lg:col-span-5 bg-[#F2EEF8]">
             <ResilientImage
-              src="/src/assets/images/scarborough_bluffs_calm_1795746664860.jpg"
+              src={`${import.meta.env.BASE_URL}src/assets/images/scarborough_bluffs_calm_1795746664860.jpg`}
               alt={resources.newBeginnings.imageAlt}
               aspectClassName="aspect-[4/3]"
               className="w-full h-full object-cover min-h-[260px]"

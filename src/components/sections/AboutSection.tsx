@@ -33,7 +33,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ content }) => {
         <div className="lg:col-span-5 flex flex-col justify-between gap-6">
           <div className="overflow-hidden rounded-xl border border-[#DFD8EC] bg-[#F2EEF8] flex-1">
             <ResilientImage
-              src="/src/assets/images/community_circle_support_1795746664233.jpg"
+              src={`${import.meta.env.BASE_URL}src/assets/images/community_circle_support_1795746664233.jpg`}
               alt={about.communityImageAlt}
               aspectClassName="aspect-[4/3]"
               className="w-full h-full object-cover min-h-[260px]"

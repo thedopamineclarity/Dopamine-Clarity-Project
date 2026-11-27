@@ -20,7 +20,7 @@ export const BrandMark: React.FC<BrandMarkProps> = ({ className = 'w-10 h-10' })
 
   return (
     <img
-      src="/assets/aistudio/logo_5be68ca7"
+      src={`${import.meta.env.BASE_URL}assets/aistudio/logo_5be68ca7`}
       alt="The Dopamine Clarity Project DCP logo"
       referrerPolicy="no-referrer"
       onError={() => setFailed(true)}
