@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, BookOpen, ExternalLink } from 'lucide-react';
+import { ArrowRight, BookOpen, ExternalLink, PlayCircle } from 'lucide-react';
 import { SiteContent } from '../../data/translations';
 import { SectionId } from '../../types';
 
@@ -42,8 +42,97 @@ export const EducationSection: React.FC<EducationSectionProps> = ({
         </p>
       </header>
 
+      {/* Canada & Ontario Addiction Statistics */}
+      <section className="rounded-xl bg-[#F2EEF8] border border-[#DFD8EC] p-6 sm:p-8 space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+          <div className="space-y-1.5 max-w-2xl">
+            <h2 className="font-serif text-2xl sm:text-3xl font-medium text-[#231F29] [text-wrap:balance]">
+              {education.statsHeading}
+            </h2>
+            <p className="text-sm sm:text-base text-[#433D4D] leading-relaxed">
+              {education.statsIntro}
+            </p>
+          </div>
+          <div className="flex items-center gap-2 shrink-0">
+            <a
+              href={education.statsSourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-[#5841A3] hover:text-[#463287] underline underline-offset-4"
+            >
+              <span>{education.statsSourceLabel}</span>
+              <ExternalLink className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+            </a>
+            <button
+              type="button"
+              onClick={() => onOpenReference(15)}
+              className="font-mono text-xs tabular-nums px-2 py-1 rounded bg-[#FAF8FC] border border-[#D3C9E5] text-[#5841A3] hover:border-[#5841A3] transition-colors cursor-pointer"
+              title={education.viewReferenceLabel}
+            >
+              [15]
+            </button>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {education.statsItems.map((stat) => (
+            <div
+              key={stat.figure}
+              className="rounded-xl bg-[#FAF8FC] border border-[#DFD8EC] p-5 space-y-2"
+            >
+              <p className="font-mono text-2xl sm:text-3xl font-medium text-[#5841A3] tabular-nums">
+                {stat.figure}
+              </p>
+              <p className="text-sm text-[#3D3746] leading-relaxed">
+                {stat.text}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Educational Reference Videos */}
+      <section className="space-y-5">
+        <div className="space-y-1.5 max-w-2xl">
+          <h2 className="font-serif text-2xl sm:text-3xl font-medium text-[#231F29] [text-wrap:balance]">
+            {education.videosHeading}
+          </h2>
+          <p className="text-sm sm:text-base text-[#433D4D] leading-relaxed">
+            {education.videosIntro}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {education.videos.map((video) => (
+            <a
+              key={video.url}
+              href={video.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group rounded-xl bg-[#FAF8FC] border border-[#DFD8EC] hover:border-[#5841A3]/50 hover:bg-[#F2EEF8]/70 p-5 flex items-start gap-4 transition-colors"
+            >
+              <div className="w-10 h-10 rounded-lg bg-[#F2EEF8] border border-[#DFD8EC] flex items-center justify-center shrink-0 text-[#5841A3] group-hover:bg-[#5841A3] group-hover:text-[#FAF8FC] transition-colors">
+                <PlayCircle className="w-5 h-5" aria-hidden="true" />
+              </div>
+              <div className="space-y-1.5 min-w-0 flex-1">
+                <h3 className="font-serif text-lg font-medium text-[#231F29]">
+                  {video.label}
+                </h3>
+                <p className="text-sm text-[#433D4D] leading-relaxed">
+                  {video.description}
+                </p>
+                <span className="inline-flex items-center gap-1.5 pt-1 text-xs sm:text-sm font-medium text-[#5841A3] group-hover:underline underline-offset-4">
+                  <span>{education.videosWatchLabel}</span>
+                  <ExternalLink className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
       {/* Editorial 2-column reading layout: Index rail + Reading column */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 pt-4 border-t border-[#DFD8EC]">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 pt-6 border-t border-[#DFD8EC]">
         {/* Chapter Navigation Rail */}
         <aside className="lg:col-span-4">
           <div className="lg:sticky lg:top-24 space-y-2">
@@ -85,9 +174,6 @@ export const EducationSection: React.FC<EducationSectionProps> = ({
                 <h2 className="font-serif text-2xl sm:text-3xl font-medium text-[#231F29] [text-wrap:balance]">
                   {topic.question}
                 </h2>
-                <p className="text-base font-medium text-[#5841A3] leading-relaxed">
-                  {topic.summary}
-                </p>
               </div>
 
               <div className="space-y-4 max-w-prose text-base text-[#3D3746] leading-relaxed">

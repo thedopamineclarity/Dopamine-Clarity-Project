@@ -284,9 +284,6 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
               <h3 className="font-serif text-2xl font-medium text-[#231F29]">
                 {activeEduTopic.question}
               </h3>
-              <p className="text-base font-medium text-[#5841A3] leading-relaxed">
-                {activeEduTopic.summary}
-              </p>
             </div>
 
             <p className="text-sm sm:text-base text-[#433D4D] leading-relaxed">

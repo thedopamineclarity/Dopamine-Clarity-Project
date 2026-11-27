@@ -21,7 +21,6 @@ export interface EducationTopic {
   id: string;
   number: string;
   question: string;
-  summary: string;
   paragraphs: string[];
   bulletHeading?: string;
   bulletItems?: { label: string; description: string }[];

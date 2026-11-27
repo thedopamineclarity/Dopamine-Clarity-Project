@@ -92,6 +92,15 @@ export interface SiteContent {
     title: string;
     intro: string;
     plainLanguageNote: string;
+    statsHeading: string;
+    statsIntro: string;
+    statsSourceLabel: string;
+    statsSourceUrl: string;
+    statsItems: { figure: string; text: string }[];
+    videosHeading: string;
+    videosIntro: string;
+    videosWatchLabel: string;
+    videos: { label: string; description: string; url: string }[];
     keyTakeawayLabel: string;
     sourcesLabel: string;
     viewReferenceLabel: string;
@@ -262,10 +271,10 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       primaryCta: 'Explore Addiction Education',
       secondaryCta: 'Find Treatment & Support',
       heroImageAlt: 'Serene sunlit Ontario lake surrounded by calm pine trees in morning mist',
-      heroCaption: 'Calm clarity begins with honest information and compassionate community care.',
+      heroCaption: 'Recovery begins with receiving accurate information and compassionate care.',
       overviewHeading: 'Take a moment to explore our website',
       overviewIntro:
-        'Whether you are worried about yourself, supporting a loved one in Ontario, or looking for verified facts without confusing jargon, begin wherever feels most comfortable.',
+        'Whether you are worried about yourself, supporting a loved one, or looking for accurate information without confusing terms, begin wherever feels most comfortable.',
       exploreLabel: 'Open section',
       sectionCards: [
         {
@@ -345,7 +354,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
         journalShareCta: 'Share your story safely',
         referencesEyebrow: '05 · Verified APA Research',
         referencesTitle: 'Every fact linked directly to public health sources',
-        referencesCta: 'View all 14 APA references',
+        referencesCta: 'View all 15 APA references',
         supportEyebrow: '06 · Support & Reach Out',
         supportTitle: 'Stand with Ontario families or send us a message',
         donateCta: 'Donate or volunteer',
@@ -370,19 +379,19 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           number: '01.',
           title: 'Accessible Multilingual Education',
           detail:
-            'Publish clear, jargon-free guides in English, French, and Spanish so families across diverse Ontario communities can learn without barriers.',
+            'We display clear and easy-to-understand information in English, French, and Spanish, so that people are able to learn without any barriers.',
         },
         {
           number: '02.',
           title: 'Direct Bridges to Scarborough & Ontario Care',
           detail:
-            'Connect individuals directly with trusted local treatment centres like New Beginnings, free 24/7 helplines, and walk-in RAAM clinics.',
+            'We can help connect you with local treatment centres such as New Beginnings, free 24/7 helplines, and walk-in RAAM clinics.',
         },
         {
           number: '03.',
-          title: 'Stigma-Free Storytelling & Outreach',
+          title: 'Create a Safe and Comforting Environment',
           detail:
-            'Host community workshops and curate a safe, moderated Journal space where lived experiences remind people they are never alone.',
+            'We aim to host community events and create a safe, moderated journal space for people to share their own experiences and remind others that they are never alone.',
         },
       ],
       teamHeading: 'Our Coordination Team',
@@ -439,7 +448,56 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       intro:
         'Medical terminology can feel overwhelming when you are simply looking for answers. Below are clear, compassionate explanations reviewed alongside real treatment professionals and backed by cited research.',
       plainLanguageNote: 'Click any citation number (such as [1]) to inspect its full APA source.',
-      keyTakeawayLabel: 'Gentle Summary',
+      statsHeading: 'Addiction Statistics in Canada & Ontario',
+      statsIntro:
+        'Understanding how common substance use challenges are helps show that no person or family is ever alone.',
+      statsSourceLabel: 'Source: Canadian Mental Health Association (CMHA) Ontario',
+      statsSourceUrl: 'https://ontario.cmha.ca/addiction-and-substance-use-and-addiction/',
+      statsItems: [
+        {
+          figure: '21%',
+          text: 'In Canada, it is estimated that 21% of the population, roughly 1 in 5 Canadians, will meet the requirements for an addiction diagnosis in their lifetime.',
+        },
+        {
+          figure: '18%',
+          text: 'Alcohol is the most common substance associated with addiction. 18% of Canadians will meet the requirements for an alcohol addiction during their lifetime.',
+        },
+        {
+          figure: '> 40%',
+          text: 'More than 40% of Canadians have used cannabis at least once.',
+        },
+        {
+          figure: '10%',
+          text: 'It is estimated that around 10% of the population in Ontario use substances problematically.',
+        },
+      ],
+      videosHeading: 'Educational Reference Videos',
+      videosIntro:
+        'If you prefer learning through short videos, explore these helpful references on substance use, brain health, and treatment:',
+      videosWatchLabel: 'Watch on YouTube',
+      videos: [
+        {
+          label: 'Reference Video 01',
+          description: 'How substance use affects the brain and health.',
+          url: 'https://youtu.be/6fmhLcYSn-Y?si=r4gB8uo0wAsan-gC',
+        },
+        {
+          label: 'Reference Video 02',
+          description: 'Understanding addiction causes, signs, and everyday impact.',
+          url: 'https://youtu.be/b6Dte96WdqM?si=iR8xUlD2a_A2zDpj',
+        },
+        {
+          label: 'Reference Video 03',
+          description: 'How substance use disorder works and paths toward recovery.',
+          url: 'https://youtu.be/IcLtRTEP7eo?si=5__10RxrXtC9Nht8',
+        },
+        {
+          label: 'Reference Video 04',
+          description: 'Exploring treatment approaches and supportive recovery care.',
+          url: 'https://youtu.be/aTS5OW85Og4?si=lF0Q3Zbo_aPmb6DE',
+        },
+      ],
+      keyTakeawayLabel: 'Summary',
       sourcesLabel: 'Cited Sources:',
       viewReferenceLabel: 'View in APA References',
       topics: [
@@ -447,79 +505,67 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           id: 'what-is-addiction',
           number: '01.',
           question: 'What is alcohol and drug addiction?',
-          summary:
-            'Drug addiction, also known as substance use disorder (SUD), is a disease that affects a person’s ability to control the use of legal or illegal drugs or medicines.',
           paragraphs: [
             'Drug addiction, which is also known as substance use disorder (SUD), is a disease that causes a person to struggle with controlling the use of a legal or illegal drug or medicine. This includes many substances, with some of the most common ones being alcohol, marijuana, and nicotine. Addiction can prompt one to continue using the substance despite the dangerous effects it may have (Mayo Clinic, 2022).',
             'Substance use disorder can be classified as mild, moderate, and severe. When someone has more than one SUD at a time, the condition is referred to as a polysubstance use disorder (Cleveland Clinic, 2024).',
           ],
           keyTakeaway:
-            'Substance use disorder ranges from mild to severe, can involve more than one substance at once, and makes stopping difficult without support despite harmful consequences.',
+            'Addiction is a health condition that makes it hard to stop using alcohol, drugs, or medicines, even when they cause harm. It can be mild, moderate, or severe.',
           citationIds: [2, 3],
         },
         {
           id: 'how-it-develops',
           number: '02.',
           question: 'How can it develop?',
-          summary:
-            'Alcohol and drug addictions typically develop over time as substances alter the brain’s dopamine reward system, shaped by personal, social, and health factors.',
           paragraphs: [
             'Alcohol and drug addictions typically develop over a long period of time. Using substances can affect the brain’s reward system by creating intense feelings of pleasure that may lead to repeated use and an increased desire to keep using them.',
             'The dopamine activity in the brain increases as a result of substance use (Cleveland Clinic, 2024). Substance use disorder may be caused by many factors, like genetics, stress, societal pressure, personality traits, and mental health issues (Johns Hopkins Medicine, 2024).',
             'For some people, it may start by trying recreational drugs (chemical substances taken for relaxation) in social settings, and for others, it may begin with a prescribed medication. The use of drugs may become more frequent, with prescribed medicines having a possible risk of an addiction, particularly with opioid painkillers. An addiction can get worse when people require larger doses of the drug in order to get high for the feeling of pleasure and relief (Mayo Clinic, 2025).',
           ],
           keyTakeaway:
-            'Increased dopamine activity, stress, genetics, social setting, and prescription tolerance can gradually turn occasional or medical use into dependence.',
+            'Addiction usually builds slowly over time. Stress, mental health, family history, social situations, and needing bigger doses to feel relief all play a part.',
           citationIds: [2, 3, 4, 5, 6],
         },
         {
           id: 'what-it-looks-like',
           number: '03.',
           question: 'What does it look like?',
-          summary:
-            'Addiction rarely looks the same in every person; it often shows up through subtle shifts in routines, relationships, mood, and secrecy.',
           paragraphs: [
             'Because many people work hard to hide their struggle out of shame or fear of judgment, signs are not always dramatic. Early clues can include pulling away from close friends or family, sudden changes in sleep or energy, missed school or work responsibilities, or needing larger amounts to get the same effect [1, 10].',
             'You might also notice someone trying to cut back several times without success, feeling irritable or shaky when they go without a drink or substance, or organizing their schedule around when they can use next [1, 13].',
           ],
           keyTakeaway:
-            'Look for gentle patterns over time—withdrawal from loved ones, rising tolerance, unsuccessful attempts to stop, or mounting daily stress.',
+            'Common signs include pulling away from loved ones, big changes in sleep or mood, needing more of a substance, and finding it hard to cut back.',
           citationIds: [1, 10, 13],
         },
         {
           id: 'body-and-mind',
           number: '04.',
           question: 'How does it physically affect the body and mental health?',
-          summary:
-            'Sustained alcohol or drug use strains vital organs while deepening anxiety, low mood, and sleep disruption—creating a loop that treatment can heal.',
           paragraphs: [
             'Physically, heavy alcohol or drug use places ongoing stress on the liver, heart, stomach, immune system, and nervous system. It can disrupt deep sleep, raise blood pressure, cause chronic fatigue, and increase long-term risks for heart and liver conditions [9, 11].',
             'Mentally and emotionally, substances can mimic or intensify depression, panic, paranoia, and memory fog. Many people use substances to quiet existing mental health pain, only to find that the comedown leaves their anxiety or sadness even heavier—a pairing doctors call concurrent disorders [11, 12].',
           ],
           keyTakeaway:
-            'Physical and mental health recover best together; caring for emotional pain is just as essential as physical healing.',
+            'Long-term substance use tires out the body’s major organs and often makes anxiety, sadness, and poor sleep feel even worse.',
           citationIds: [9, 11, 12],
         },
         {
           id: 'when-to-seek-help',
           number: '05.',
           question: 'When should someone seek help?',
-          summary:
-            'You never have to wait for a rock-bottom moment—reaching out as soon as substance use brings worry, secrecy, or discomfort is always the right time.',
           paragraphs: [
             'A common myth is that someone must lose everything before seeking support. In truth, early conversations with a doctor, counselor, helpline, or treatment centre like New Beginnings lead to gentler, safer recovery [13, 14].',
             'Consider reaching out right away if alcohol or drugs are affecting your sleep, relationships, safety, finances, or emotional peace—or if stopping suddenly causes sweating, shaking, or severe distress, as medical supervision keeps withdrawal safe [1, 13, 14].',
           ],
           keyTakeaway:
-            'The right time to ask for help is the moment you begin wondering whether you or someone you love needs support.',
+            'You do not have to wait for a crisis. The best time to reach out is whenever substance use begins causing worry, stress, or harm.',
           citationIds: [1, 13, 14],
         },
         {
           id: 'types-of-treatment',
           number: '06.',
           question: 'Types of treatment available',
-          summary:
-            'Recovery often starts with safe withdrawal under medical guidance, followed by tailored therapy and supportive care matched to each person’s needs.',
           paragraphs: [
             'For many people, the first step to treatment involves withdrawing from the substance so that it can leave your body. A healthcare professional may provide medication to help with the effects of withdrawal based on how severe the addiction is. Further treatment can include therapy and other medication, but SUD affects everyone differently, so people may need different treatment at different times during their recovery journey (Cleveland Clinic, 2024). For proper and safe recovery, please consult a healthcare professional about medication before taking it.',
           ],
@@ -577,7 +623,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
             url: 'https://www.torontocentralhealthline.ca/listservices.aspx?id=10095',
           },
           keyTakeaway:
-            'Always consult a healthcare professional before taking withdrawal or recovery medications, and explore which therapy setting fits your goals best.',
+            'Treatment looks different for everyone. It may include medical withdrawal support, counseling, and live-in or community therapy—always speak with a doctor before taking medication.',
           citationIds: [7, 8],
         },
       ],
@@ -590,7 +636,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       eyebrow: 'Verified Scholarship',
       title: 'APA References & Original Sources',
       intro:
-        'Transparency builds trust. Every educational claim on The Dopamine Clarity Project is grounded in peer-reviewed guidance and public health publications. Follow any link below to read the original source directly.',
+        'Below are our references for each and every educational claim we make on The Dopamine Clarity Project, which are grounded in peer-reviewed guidance and public health publications. Follow any link below to be directed to the original source.',
       verifiedNote: 'Formatted in APA 7th Edition · Reviewed alongside Scarborough treatment providers',
       openSourceLabel: 'Read original source',
       topicLabel: 'Used for:',
@@ -892,7 +938,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
     footer: {
       tagline: 'Breaking the cycle, sparking a revival.',
       verifiedNote:
-        'Educational information reviewed alongside New Beginnings Recovery Home (Scarborough) and cited from CAMH, CCSA, NIDA, WHO & Health Canada.',
+        'Educational information reviewed alongside New Beginnings Recovery Home (Scarborough) and cited from multiple health organizations.',
       rights: 'The Dopamine Clarity Project · Student-Led Ontario Initiative',
       quickLinksHeading: 'Explore',
       supportHeading: 'Direct Contacts',
@@ -930,10 +976,10 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       primaryCta: 'Explorer l’éducation',
       secondaryCta: 'Trouver du soutien',
       heroImageAlt: 'Lac paisible de l’Ontario au lever du soleil entouré de pins calmes dans la brume matinale',
-      heroCaption: 'La clarté commence par une information honnête et un soutien communautaire bienveillant.',
+      heroCaption: 'Le rétablissement commence par une information exacte et des soins empreints de compassion.',
       overviewHeading: 'Prenez un moment pour explorer notre site Web',
       overviewIntro:
-        'Que vous cherchiez des réponses pour vous-même, pour un proche en Ontario ou pour mieux comprendre sans jargon médical complexe, commencez ici en toute sérénité.',
+        'Que vous soyez inquiet pour vous-même, que vous souteniez un proche ou que vous cherchiez des informations précises sans termes compliqués, commencez là où vous vous sentez le plus à l’aise.',
       exploreLabel: 'Ouvrir la section',
       sectionCards: [
         {
@@ -1013,7 +1059,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
         journalShareCta: 'Partager votre histoire en toute sécurité',
         referencesEyebrow: '05 · Sources APA vérifiées',
         referencesTitle: 'Chaque information liée aux sources de santé publique',
-        referencesCta: 'Voir les 14 références APA',
+        referencesCta: 'Voir les 15 références APA',
         supportEyebrow: '06 · Soutenir et nous joindre',
         supportTitle: 'Soutenez les familles de l’Ontario ou écrivez-nous',
         donateCta: 'Donner ou devenir bénévole',
@@ -1038,19 +1084,19 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           number: '01.',
           title: 'Éducation multilingue accessible',
           detail:
-            'Offrir des guides simples en anglais, français et espagnol pour que chaque famille ontarienne puisse comprendre sans barrière.',
+            'Nous présentons des informations claires et faciles à comprendre en anglais, en français et en espagnol afin que chacun puisse apprendre sans barrière.',
         },
         {
           number: '02.',
           title: 'Liens directs vers les soins en Ontario',
           detail:
-            'Orienter les visiteurs vers des centres reconnus comme New Beginnings à Scarborough, les lignes 24/7 et les cliniques RAAM.',
+            'Nous pouvons vous aider à entrer en contact avec des centres locaux comme New Beginnings, des lignes d’aide gratuites 24/7 et les cliniques RAAM sans rendez-vous.',
         },
         {
           number: '03.',
-          title: 'Récits sans jugement et ateliers',
+          title: 'Créer un environnement sûr et réconfortant',
           detail:
-            'Créer un espace de journal sécurisé et organiser des rencontres communautaires pour briser l’isolement.',
+            'Nous visons à organiser des événements communautaires et à offrir un journal modéré et sécuritaire où chacun peut partager son vécu et rappeler aux autres qu’ils ne sont jamais seuls.',
         },
       ],
       teamHeading: 'Notre équipe de coordination',
@@ -1107,7 +1153,56 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       intro:
         'Les termes médicaux peuvent sembler intimidants lorsqu’on cherche simplement de l’aide. Voici des explications claires, sans jargon compliqué, appuyées par des sources scientifiques.',
       plainLanguageNote: 'Cliquez sur un numéro de source (ex. [1]) pour consulter sa référence APA complète.',
-      keyTakeawayLabel: 'À retenir simplement',
+      statsHeading: 'Statistiques sur la dépendance au Canada et en Ontario',
+      statsIntro:
+        'Savoir à quel point les troubles liés aux substances sont fréquents rappelle que personne n’est seul.',
+      statsSourceLabel: 'Source : Association canadienne pour la santé mentale (ACSM) Ontario',
+      statsSourceUrl: 'https://ontario.cmha.ca/addiction-and-substance-use-and-addiction/',
+      statsItems: [
+        {
+          figure: '21 %',
+          text: 'Au Canada, on estime que 21 % de la population, soit environ 1 Canadien sur 5, répondra aux critères d’un diagnostic de dépendance au cours de sa vie.',
+        },
+        {
+          figure: '18 %',
+          text: 'L’alcool est la substance la plus fréquemment associée à la dépendance : 18 % des Canadiens répondront aux critères d’une dépendance à l’alcool au cours de leur vie.',
+        },
+        {
+          figure: '> 40 %',
+          text: 'Plus de 40 % des Canadiens ont déjà consommé du cannabis au moins une fois.',
+        },
+        {
+          figure: '10 %',
+          text: 'On estime qu’environ 10 % de la population ontarienne consomme des substances de manière problématique.',
+        },
+      ],
+      videosHeading: 'Vidéos éducatives de référence',
+      videosIntro:
+        'Si vous préférez apprendre par de courtes vidéos, consultez ces ressources utiles sur la dépendance, le cerveau et les traitements :',
+      videosWatchLabel: 'Regarder sur YouTube',
+      videos: [
+        {
+          label: 'Vidéo de référence 01',
+          description: 'Comment les substances influencent le cerveau et la santé.',
+          url: 'https://youtu.be/6fmhLcYSn-Y?si=r4gB8uo0wAsan-gC',
+        },
+        {
+          label: 'Vidéo de référence 02',
+          description: 'Comprendre les causes, les signes et les effets de la dépendance.',
+          url: 'https://youtu.be/b6Dte96WdqM?si=iR8xUlD2a_A2zDpj',
+        },
+        {
+          label: 'Vidéo de référence 03',
+          description: 'Comment se développe le trouble lié à l’usage de substances et le rétablissement.',
+          url: 'https://youtu.be/IcLtRTEP7eo?si=5__10RxrXtC9Nht8',
+        },
+        {
+          label: 'Vidéo de référence 04',
+          description: 'Découvrir les traitements et les approches de rétablissement.',
+          url: 'https://youtu.be/aTS5OW85Og4?si=lF0Q3Zbo_aPmb6DE',
+        },
+      ],
+      keyTakeawayLabel: 'Résumé',
       sourcesLabel: 'Sources citées :',
       viewReferenceLabel: 'Voir dans les références APA',
       topics: [
@@ -1115,79 +1210,67 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           id: 'what-is-addiction',
           number: '01.',
           question: 'Qu’est-ce que la dépendance à l’alcool et aux drogues ?',
-          summary:
-            'La toxicomanie, aussi appelée trouble lié à l’usage de substances (TUS), est une maladie qui empêche de contrôler l’usage d’une drogue ou d’un médicament.',
           paragraphs: [
             'La dépendance aux drogues, également appelée trouble lié à l’usage de substances (TUS), est une maladie qui entraîne des difficultés à contrôler l’utilisation d’une drogue légale ou illégale ou d’un médicament. Cela inclut de nombreuses substances, parmi lesquelles les plus courantes sont l’alcool, le cannabis et la nicotine. La dépendance peut pousser une personne à continuer de consommer malgré ses effets dangereux (Mayo Clinic, 2022).',
             'Le trouble lié à l’usage de substances peut être classé comme léger, modéré ou sévère. Lorsqu’une personne présente plus d’un TUS en même temps, on parle de trouble lié à l’usage de plusieurs substances (Cleveland Clinic, 2024).',
           ],
           keyTakeaway:
-            'Le trouble lié à l’usage de substances varie de léger à sévère, peut concerner plusieurs substances à la fois et rend l’arrêt difficile sans accompagnement.',
+            'La dépendance est une maladie qui rend difficile l’arrêt de l’alcool, des drogues ou des médicaments malgré les risques. Elle peut être légère, modérée ou sévère.',
           citationIds: [2, 3],
         },
         {
           id: 'how-it-develops',
           number: '02.',
           question: 'Comment peut-elle se développer ?',
-          summary:
-            'Les dépendances se développent souvent sur une longue période en modifiant le circuit de la dopamine sous l’effet de facteurs génétiques, sociaux et émotionnels.',
           paragraphs: [
             'Les dépendances à l’alcool et aux drogues se développent généralement sur une longue période. La consommation de substances affecte le système de récompense du cerveau en créant des sensations intenses de plaisir qui favorisent une consommation répétée et un désir accru de continuer.',
             'L’activité de la dopamine dans le cerveau augmente sous l’effet des substances (Cleveland Clinic, 2024). Le trouble lié à l’usage de substances peut être causé par de nombreux facteurs tels que la génétique, le stress, la pression sociale, les traits de personnalité et les troubles de santé mentale (Johns Hopkins Medicine, 2024).',
             'Pour certains, cela commence en essayant des drogues récréatives dans un cadre social, et pour d’autres, avec un médicament prescrit. La consommation peut devenir plus fréquente, les médicaments sur ordonnance comportant un risque de dépendance, en particulier les analgésiques opioïdes. La dépendance s’aggrave lorsqu’une personne a besoin de doses plus élevées pour ressentir le plaisir ou le soulagement recherché (Mayo Clinic, 2025).',
           ],
           keyTakeaway:
-            'La hausse de dopamine, le stress, la génétique, l’entourage et la tolérance aux médicaments peuvent transformer progressivement un usage occasionnel en dépendance.',
+            'La dépendance s’installe souvent lentement. Le stress, la santé mentale, la génétique, l’entourage et le besoin de doses plus fortes y contribuent.',
           citationIds: [2, 3, 4, 5, 6],
         },
         {
           id: 'what-it-looks-like',
           number: '03.',
           question: 'À quoi ressemble-t-elle au quotidien ?',
-          summary:
-            'Elle se manifeste souvent par des changements subtils dans les habitudes, l’isolement, l’humeur ou la dissimulation.',
           paragraphs: [
             'Par peur du jugement, beaucoup cachent leur souffrance. On peut observer un éloignement des proches, des changements de sommeil, des absences au travail ou à l’école, ou le besoin de consommer davantage pour le même effet [1, 10].',
             'Une personne peut aussi essayer plusieurs fois d’arrêter sans y parvenir seule, ou ressentir de l’irritabilité et de l’agitation lorsqu’elle passe un moment sans consommer [1, 13].',
           ],
           keyTakeaway:
-            'Prêtez attention aux habitudes durables : isolement, tolérance accrue et tentatives infructueuses de réduction.',
+            'Les signes courants incluent l’isolement des proches, des changements de sommeil ou d’humeur, une tolérance accrue et la difficulté à réduire sa consommation.',
           citationIds: [1, 10, 13],
         },
         {
           id: 'body-and-mind',
           number: '04.',
           question: 'Comment affecte-t-elle le corps et la santé mentale ?',
-          summary:
-            'L’usage prolongé fatigue les organes vitaux tout en accentuant l’anxiété, la tristesse et les troubles du sommeil.',
           paragraphs: [
             'Sur le plan physique, l’alcool et les drogues sollicitent lourdement le foie, le cœur, l’estomac et le système nerveux, perturbant le sommeil profond et l’énergie quotidienne [9, 11].',
             'Sur le plan mental, ils peuvent amplifier l’anxiété, la dépression et les troubles de concentration. Soigner ensemble le corps et les émotions est essentiel pour retrouver un équilibre durable [11, 12].',
           ],
           keyTakeaway:
-            'Le corps et la santé mentale guérissent ensemble grâce à une approche globale et bienveillante.',
+            'L’usage prolongé fatigue les organes essentiels et aggrave souvent l’anxiété, la tristesse et les troubles du sommeil.',
           citationIds: [9, 11, 12],
         },
         {
           id: 'when-to-seek-help',
           number: '05.',
           question: 'Quand faut-il demander de l’aide ?',
-          summary:
-            'Il n’est jamais trop tôt : dès que la consommation crée de l’inquiétude, du secret ou du malaise, il est temps de parler à quelqu’un.',
           paragraphs: [
             'Nul besoin d’attendre une crise grave pour consulter. Parler tôt à un médecin, à une ligne d’aide ou à un centre comme New Beginnings permet un accompagnement plus doux et sécuritaire [13, 14].',
             'Demandez de l’aide dès que la consommation affecte vos relations, votre santé ou votre sérénité—et consultez un professionnel avant d’arrêter brusquement si vous ressentez des tremblements ou un malaise physique [1, 13, 14].',
           ],
           keyTakeaway:
-            'Le meilleur moment pour demander de l’aide est dès que la question se pose.',
+            'Il n’est pas nécessaire d’attendre une crise : le bon moment pour demander de l’aide est dès que la consommation inquiète ou cause du tort.',
           citationIds: [1, 13, 14],
         },
         {
           id: 'types-of-treatment',
           number: '06.',
           question: 'Types de traitements disponibles',
-          summary:
-            'Le rétablissement commence souvent par un sevrage encadré, suivi d’une thérapie et de soins adaptés aux besoins uniques de chacun.',
           paragraphs: [
             'Pour beaucoup de personnes, la première étape du traitement consiste à se sevrer afin que la substance quitte le corps. Un professionnel de santé peut prescrire des médicaments pour atténuer les effets du sevrage selon la gravité de la dépendance. Le traitement peut ensuite inclure une thérapie et d’autres médicaments, car le TUS touche chacun différemment (Cleveland Clinic, 2024). Pour un rétablissement sûr, consultez toujours un professionnel de santé avant de prendre un médicament.',
           ],
@@ -1243,7 +1326,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
             url: 'https://www.torontocentralhealthline.ca/listservices.aspx?id=10095',
           },
           keyTakeaway:
-            'Consultez toujours un professionnel de santé avant de prendre un médicament et choisissez la forme de thérapie adaptée à votre parcours.',
+            'Chaque parcours est différent. Le traitement peut inclure un suivi médical du sevrage, une thérapie ou un séjour résidentiel—consultez toujours un médecin avant de prendre un médicament.',
           citationIds: [7, 8],
         },
       ],
@@ -1256,7 +1339,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       eyebrow: 'Sources vérifiées',
       title: 'Références APA et liens originaux',
       intro:
-        'Chaque information de ce site s’appuie sur des publications de santé publique reconnues. Cliquez sur les liens ci-dessous pour consulter les documents originaux.',
+        'Vous trouverez ci-dessous nos références pour chacune des informations éducatives présentées sur The Dopamine Clarity Project, appuyées sur des guides cliniques et des publications de santé publique. Suivez chaque lien pour accéder directement à la source originale.',
       verifiedNote: 'Format APA 7e édition · Vérifié avec les centres de traitement de Scarborough',
       openSourceLabel: 'Lire la source originale',
       topicLabel: 'Utilisé pour :',
@@ -1512,7 +1595,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
     footer: {
       tagline: 'Briser le cycle, susciter un renouveau.',
       verifiedNote:
-        'Informations éducatives vérifiées avec New Beginnings Recovery Home (Scarborough) et citées de CAMH, CCDUS, NIDA, OMS et Santé Canada.',
+        'Informations éducatives révisées avec New Beginnings Recovery Home (Scarborough) et citées auprès de plusieurs organismes de santé.',
       rights: 'The Dopamine Clarity Project · Initiative étudiante en Ontario',
       quickLinksHeading: 'Explorer',
       supportHeading: 'Contacts directs',
@@ -1550,10 +1633,10 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       primaryCta: 'Explorar educación',
       secondaryCta: 'Buscar apoyo y tratamiento',
       heroImageAlt: 'Lago sereno de Ontario al amanecer rodeado de pinos tranquilos bajo una neblina suave',
-      heroCaption: 'La claridad comienza con información honesta y apoyo comunitario compasivo.',
+      heroCaption: 'La recuperación comienza al recibir información precisa y un cuidado compasivo.',
       overviewHeading: 'Tómate un momento para explorar nuestro sitio web',
       overviewIntro:
-        'Ya sea que busques respuestas para ti, para apoyar a un ser querido en Ontario o para entender mejor sin términos médicos confusos, comienza donde te sientas más cómodo.',
+        'Ya sea que estés preocupado por ti mismo, apoyando a un ser querido o buscando información precisa sin términos confusos, comienza donde te sientas más cómodo.',
       exploreLabel: 'Abrir sección',
       sectionCards: [
         {
@@ -1633,7 +1716,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
         journalShareCta: 'Compartir tu historia con seguridad',
         referencesEyebrow: '05 · Fuentes APA verificadas',
         referencesTitle: 'Cada dato enlazado a fuentes oficiales de salud pública',
-        referencesCta: 'Ver las 14 referencias APA',
+        referencesCta: 'Ver las 15 referencias APA',
         supportEyebrow: '06 · Apoyar y contactar',
         supportTitle: 'Apoya a las familias de Ontario o envíanos un mensaje',
         donateCta: 'Donar o ser voluntario',
@@ -1658,19 +1741,19 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           number: '01.',
           title: 'Educación multilingüe accesible',
           detail:
-            'Brindar guías claras en inglés, francés y español para que todas las familias de Ontario accedan sin barreras.',
+            'Presentamos información clara y fácil de entender en inglés, francés y español para que todas las personas puedan aprender sin barreras.',
         },
         {
           number: '02.',
           title: 'Puentes directos hacia atención en Scarborough y Ontario',
           detail:
-            'Conectar a las personas con centros confiables como New Beginnings, líneas gratuitas 24/7 y clínicas RAAM.',
+            'Podemos ayudarte a conectar con centros de tratamiento locales como New Beginnings, líneas gratuitas 24/7 y clínicas RAAM sin cita previa.',
         },
         {
           number: '03.',
-          title: 'Historias sin estigma y talleres comunitarios',
+          title: 'Crear un entorno seguro y reconfortante',
           detail:
-            'Mantener un espacio seguro y moderado en el Diario para recordar a cada persona que no está sola.',
+            'Buscamos organizar eventos comunitarios y ofrecer un diario seguro y moderado donde las personas puedan compartir sus experiencias y recordar a otros que nunca están solos.',
         },
       ],
       teamHeading: 'Nuestro equipo coordinador',
@@ -1727,7 +1810,56 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       intro:
         'La terminología médica puede resultar abrumadora cuando solo buscas claridad. Aquí tienes explicaciones simples, humanas y respaldadas por citas verificadas.',
       plainLanguageNote: 'Haz clic en cualquier número de cita (como [1]) para ver la fuente APA completa.',
-      keyTakeawayLabel: 'Idea clave',
+      statsHeading: 'Estadísticas sobre adicciones en Canadá y Ontario',
+      statsIntro:
+        'Conocer qué tan frecuentes son estas situaciones ayuda a recordar que ninguna persona ni familia está sola.',
+      statsSourceLabel: 'Fuente: Canadian Mental Health Association (CMHA) Ontario',
+      statsSourceUrl: 'https://ontario.cmha.ca/addiction-and-substance-use-and-addiction/',
+      statsItems: [
+        {
+          figure: '21%',
+          text: 'En Canadá, se estima que el 21% de la población, aproximadamente 1 de cada 5 canadienses, cumplirá los criterios de un diagnóstico de adicción en su vida.',
+        },
+        {
+          figure: '18%',
+          text: 'El alcohol es la sustancia más asociada con la adicción: el 18% de los canadienses cumplirá los criterios de adicción al alcohol durante su vida.',
+        },
+        {
+          figure: '> 40%',
+          text: 'Más del 40% de los canadienses ha consumido cannabis al menos una vez.',
+        },
+        {
+          figure: '10%',
+          text: 'Se estima que alrededor del 10% de la población de Ontario consume sustancias de manera problemática.',
+        },
+      ],
+      videosHeading: 'Videos educativos de referencia',
+      videosIntro:
+        'Si prefieres aprender con videos breves, explora estas referencias sobre consumo de sustancias, salud cerebral y tratamiento:',
+      videosWatchLabel: 'Ver en YouTube',
+      videos: [
+        {
+          label: 'Video de referencia 01',
+          description: 'Cómo el consumo de sustancias afecta al cerebro y la salud.',
+          url: 'https://youtu.be/6fmhLcYSn-Y?si=r4gB8uo0wAsan-gC',
+        },
+        {
+          label: 'Video de referencia 02',
+          description: 'Comprender las causas, señales e impacto de la adicción.',
+          url: 'https://youtu.be/b6Dte96WdqM?si=iR8xUlD2a_A2zDpj',
+        },
+        {
+          label: 'Video de referencia 03',
+          description: 'Cómo funciona el trastorno por uso de sustancias y la recuperación.',
+          url: 'https://youtu.be/IcLtRTEP7eo?si=5__10RxrXtC9Nht8',
+        },
+        {
+          label: 'Video de referencia 04',
+          description: 'Opciones de tratamiento y apoyo en la recuperación.',
+          url: 'https://youtu.be/aTS5OW85Og4?si=lF0Q3Zbo_aPmb6DE',
+        },
+      ],
+      keyTakeawayLabel: 'Resumen',
       sourcesLabel: 'Fuentes citadas:',
       viewReferenceLabel: 'Ver en Referencias APA',
       topics: [
@@ -1735,79 +1867,67 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           id: 'what-is-addiction',
           number: '01.',
           question: '¿Qué es la adicción al alcohol y las drogas?',
-          summary:
-            'La drogadicción, también conocida como trastorno por uso de sustancias (TUS), es una enfermedad que dificulta controlar el consumo de drogas o medicamentos.',
           paragraphs: [
             'La adicción a las drogas, también conocida como trastorno por uso de sustancias (TUS), es una enfermedad que provoca dificultades para controlar el uso de una droga legal o ilegal o de un medicamento. Esto incluye muchas sustancias, entre las más comunes el alcohol, la marihuana y la nicotina. La adicción puede llevar a seguir consumiendo a pesar de sus efectos peligrosos (Mayo Clinic, 2022).',
             'El trastorno por uso de sustancias puede clasificarse como leve, moderado o grave. Cuando una persona tiene más de un TUS al mismo tiempo, la afección se denomina trastorno por uso de polisustancias (Cleveland Clinic, 2024).',
           ],
           keyTakeaway:
-            'El trastorno por uso de sustancias puede ser leve, moderado o grave, involucrar más de una sustancia y requerir apoyo para detenerlo.',
+            'La adicción es una condición de salud que dificulta controlar el consumo de alcohol, drogas o medicamentos, incluso cuando causan daño.',
           citationIds: [2, 3],
         },
         {
           id: 'how-it-develops',
           number: '02.',
           question: '¿Cómo puede desarrollarse?',
-          summary:
-            'Suele desarrollarse con el tiempo al alterar el sistema de recompensa y dopamina del cerebro, influido por factores genéticos, sociales y emocionales.',
           paragraphs: [
             'Las adicciones al alcohol y las drogas suelen desarrollarse durante un largo periodo. Consumir sustancias afecta el sistema de recompensa cerebral al generar sensaciones intensas de placer que impulsan el uso repetido y el deseo de continuar.',
             'La actividad de la dopamina en el cerebro aumenta como resultado del consumo (Cleveland Clinic, 2024). El trastorno por uso de sustancias puede deberse a muchos factores, como genética, estrés, presión social, rasgos de personalidad y problemas de salud mental (Johns Hopkins Medicine, 2024).',
             'Para algunas personas comienza probando drogas recreativas en entornos sociales, y para otras con un medicamento recetado. El consumo puede volverse más frecuente, y los medicamentos recetados conllevan riesgo de adicción, en especial los analgésicos opioides. La adicción empeora cuando se necesitan dosis mayores para obtener placer y alivio (Mayo Clinic, 2025).',
           ],
           keyTakeaway:
-            'El aumento de dopamina, el estrés, la genética, el entorno y la tolerancia a medicamentos pueden transformar gradualmente el consumo en dependencia.',
+            'La adicción suele desarrollarse poco a poco. El estrés, la salud mental, los antecedentes familiares, el entorno y necesitar dosis más altas influyen en ello.',
           citationIds: [2, 3, 4, 5, 6],
         },
         {
           id: 'what-it-looks-like',
           number: '03.',
           question: '¿Cómo se manifiesta?',
-          summary:
-            'No siempre es evidente; suele mostrarse en cambios de rutina, aislamiento, alteraciones del sueño y secreto por miedo al juicio.',
           paragraphs: [
             'Muchas personas ocultan su lucha por vergüenza. Las señales tempranas incluyen alejarse de la familia, cambios bruscos de energía o sueño, faltar a responsabilidades o necesitar dosis mayores [1, 10].',
             'También es común intentar reducir el consumo varias veces sin lograrlo solo, o sentir irritabilidad y temblores al pasar tiempo sin consumir [1, 13].',
           ],
           keyTakeaway:
-            'Observa patrones sostenidos: aislamiento, mayor tolerancia e intentos fallidos de parar.',
+            'Las señales frecuentes incluyen alejarse de seres queridos, cambios en el sueño o ánimo, necesitar mayor cantidad y dificultad para reducir el consumo.',
           citationIds: [1, 10, 13],
         },
         {
           id: 'body-and-mind',
           number: '04.',
           question: '¿Cómo afecta físicamente al cuerpo y la salud mental?',
-          summary:
-            'El uso prolongado desgasta órganos vitales e intensifica la ansiedad, la tristeza y los problemas de sueño.',
           paragraphs: [
             'Físicamente, sobrecarga el hígado, el corazón, el estómago y el sistema nervioso, causando fatiga crónica y alteración del descanso profundo [9, 11].',
             'Mentalmente, puede empeorar la ansiedad, la depresión y la claridad emocional. Cuidar la salud física y emocional al mismo tiempo acelera una recuperación estable [11, 12].',
           ],
           keyTakeaway:
-            'Cuerpo y mente sanan mejor cuando reciben atención integral al mismo tiempo.',
+            'El consumo prolongado desgasta órganos importantes y suele empeorar la ansiedad, la tristeza y los problemas de sueño.',
           citationIds: [9, 11, 12],
         },
         {
           id: 'when-to-seek-help',
           number: '05.',
           question: '¿Cuándo debe buscar ayuda una persona?',
-          summary:
-            'No hay que esperar una crisis grave: el momento correcto es en cuanto el consumo genera preocupación, malestar o secreto.',
           paragraphs: [
             'Buscar orientación temprana con un médico, línea de apoyo o un centro como New Beginnings hace que el proceso sea más seguro y sereno [13, 14].',
             'Pide apoyo si afecta tu salud, tus relaciones o tu tranquilidad —y consulta a un profesional antes de suspender de golpe si hay síntomas físicos de abstinencia [1, 13, 14].',
           ],
           keyTakeaway:
-            'El mejor momento para pedir ayuda es hoy, apenas surja la inquietud.',
+            'No hace falta esperar una crisis. El mejor momento para pedir ayuda es cuando el consumo empieza a causar preocupación o malestar.',
           citationIds: [1, 13, 14],
         },
         {
           id: 'types-of-treatment',
           number: '06.',
           question: 'Tipos de tratamiento disponibles',
-          summary:
-            'La recuperación suele iniciar con una desintoxicación médica segura, seguida de terapias y apoyo adaptados a las metas de cada persona.',
           paragraphs: [
             'Para muchas personas, el primer paso del tratamiento consiste en suspender la sustancia para que salga del organismo. Un profesional de la salud puede indicar medicación para aliviar la abstinencia según la gravedad de la adicción. El tratamiento posterior incluye terapia y otros medicamentos, ya que el TUS afecta a cada persona de forma distinta (Cleveland Clinic, 2024). Para una recuperación segura, consulta siempre a un profesional de salud antes de tomar cualquier medicamento.',
           ],
@@ -1863,7 +1983,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
             url: 'https://www.torontocentralhealthline.ca/listservices.aspx?id=10095',
           },
           keyTakeaway:
-            'Consulta siempre a un profesional médico antes de iniciar medicamentos y elige la terapia que mejor respalde tu bienestar.',
+            'El tratamiento es distinto para cada persona y puede incluir apoyo médico, terapia o programas residenciales; consulta siempre a un profesional antes de tomar medicamentos.',
           citationIds: [7, 8],
         },
       ],
@@ -1876,7 +1996,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       eyebrow: 'Fuentes verificadas',
       title: 'Referencias APA y enlaces originales',
       intro:
-        'Cada afirmación educativa en nuestro sitio cuenta con su fuente original en formato APA para que puedas leer más directamente.',
+        'A continuación se presentan nuestras referencias para cada dato educativo de The Dopamine Clarity Project, respaldadas por guías clínicas y publicaciones de salud pública. Haz clic en cualquier enlace para ir directamente a la fuente original.',
       verifiedNote: 'Formato APA 7.ª edición · Revisado junto a centros de tratamiento en Scarborough',
       openSourceLabel: 'Leer fuente original',
       topicLabel: 'Citado en:',
@@ -2132,7 +2252,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
     footer: {
       tagline: 'Rompiendo el ciclo, impulsando un renacer.',
       verifiedNote:
-        'Información educativa revisada junto a New Beginnings Recovery Home (Scarborough) y citada de CAMH, CCSA, NIDA, OMS y Health Canada.',
+        'Información educativa revisada junto a New Beginnings Recovery Home (Scarborough) y citada de múltiples organizaciones de salud.',
       rights: 'The Dopamine Clarity Project · Iniciativa estudiantil en Ontario',
       quickLinksHeading: 'Explorar',
       supportHeading: 'Contactos directos',

@@ -127,4 +127,13 @@ export const APA_REFERENCES: ReferenceItem[] = [
     topicArea: 'Scarborough Residential Treatment & Medical Verification',
     url: 'https://newbeginningsrecovery.ca/',
   },
+  {
+    id: 15,
+    apaCitation:
+      'Canadian Mental Health Association, Ontario. (2024). Addiction and substance use and addiction: Statistics in Canada and Ontario. CMHA Ontario.',
+    publisher: 'Canadian Mental Health Association (CMHA) Ontario',
+    year: '2024',
+    topicArea: 'Canadian & Ontario Addiction Prevalence Statistics',
+    url: 'https://ontario.cmha.ca/addiction-and-substance-use-and-addiction/',
+  },
 ];
