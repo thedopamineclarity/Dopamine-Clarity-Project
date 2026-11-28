@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Mail, MapPin, CheckCircle2, ExternalLink } from 'lucide-react';
+import { Phone, Mail, MapPin, CheckCircle2, ExternalLink, Copy, Check } from 'lucide-react';
 import { SiteContent } from '../../data/translations';
 import { ScrollReveal } from '../ScrollReveal';
 
 interface ContactSectionProps {
   content: SiteContent;
   defaultRecipient: 'project' | 'newBeginnings';
+}
+
+interface DraftEmail {
+  to: string;
+  subject: string;
+  body: string;
+  mailtoUrl: string;
+  gmailUrl: string;
 }
 
 export const ContactSection: React.FC<ContactSectionProps> = ({
@@ -23,8 +31,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [submitted, setSubmitted] = useState(false);
-  const [lastMailtoUrl, setLastMailtoUrl] = useState('');
-  const [lastRecipientEmail, setLastRecipientEmail] = useState('');
+  const [lastDraft, setLastDraft] = useState<DraftEmail | null>(null);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     setRecipient(defaultRecipient);
@@ -70,24 +78,43 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
       trimmedMessage,
     ];
 
+    const bodyText = bodyLines.join('\n');
+    const mailtoBodyText = bodyLines.join('\r\n');
+
     const mailtoUrl = `mailto:${targetEmail}?subject=${encodeURIComponent(
       subject
-    )}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
+    )}&body=${encodeURIComponent(mailtoBodyText)}`;
 
-    setLastMailtoUrl(mailtoUrl);
-    setLastRecipientEmail(targetEmail);
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+      targetEmail
+    )}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
+
+    setLastDraft({
+      to: targetEmail,
+      subject,
+      body: bodyText,
+      mailtoUrl,
+      gmailUrl,
+    });
+    setCopied(false);
     setSubmitted(true);
     setName('');
     setEmail('');
     setPhone('');
     setMessage('');
 
-    const anchor = document.createElement('a');
-    anchor.href = mailtoUrl;
-    anchor.style.display = 'none';
-    document.body.appendChild(anchor);
-    anchor.click();
-    document.body.removeChild(anchor);
+    window.location.href = mailtoUrl;
+  };
+
+  const handleCopyDraft = async () => {
+    if (!lastDraft) return;
+    const formatted = `${contact.draftToLabel}: ${lastDraft.to}\n${contact.draftSubjectLabel}: ${lastDraft.subject}\n\n${lastDraft.body}`;
+    try {
+      await navigator.clipboard.writeText(formatted);
+      setCopied(true);
+    } catch {
+      setCopied(false);
+    }
   };
 
   return (
@@ -174,8 +201,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
             {contact.formTitle}
           </h2>
 
-          {submitted && (
-            <div className="rounded-lg bg-[#EFEBF8] border border-[#5841A3]/30 p-4 space-y-2.5">
+          {submitted && lastDraft && (
+            <div className="rounded-lg bg-[#EFEBF8] border border-[#5841A3]/30 p-4 space-y-3">
               <div className="flex items-center gap-2 text-sm font-semibold text-[#5841A3]">
                 <CheckCircle2 className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>{contact.successTitle}</span>
@@ -183,18 +210,54 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
               <p className="text-xs sm:text-sm text-[#231F29] leading-relaxed">
                 {contact.successBody}
               </p>
-              {lastMailtoUrl && (
+
+              <div className="rounded-lg bg-[#FAF8FC] border border-[#DFD8EC] p-3 text-xs text-[#231F29] space-y-1">
+                <p>
+                  <span className="font-semibold text-[#5841A3]">{contact.draftToLabel}:</span>{' '}
+                  {lastDraft.to}
+                </p>
+                <p>
+                  <span className="font-semibold text-[#5841A3]">{contact.draftSubjectLabel}:</span>{' '}
+                  {lastDraft.subject}
+                </p>
+                <pre className="pt-1.5 mt-1.5 border-t border-[#E6DFF3] whitespace-pre-wrap font-sans text-xs text-[#433D4D] leading-relaxed">
+                  {lastDraft.body}
+                </pre>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2.5">
                 <a
-                  href={lastMailtoUrl}
+                  href={lastDraft.gmailUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#5841A3] hover:bg-[#463287] text-xs font-medium text-[#FAF8FC] transition-colors whitespace-nowrap"
                 >
                   <Mail className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-                  <span>
-                    {contact.openDraftLabel} ({lastRecipientEmail})
-                  </span>
+                  <span>{contact.openGmailLabel}</span>
                   <ExternalLink className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
                 </a>
-              )}
+
+                <a
+                  href={lastDraft.mailtoUrl}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#FAF8FC] hover:bg-[#E8E1F4] border border-[#D3C9E5] text-xs font-medium text-[#231F29] transition-colors whitespace-nowrap"
+                >
+                  <Mail className="w-3.5 h-3.5 shrink-0 text-[#5841A3]" aria-hidden="true" />
+                  <span>{contact.openDraftLabel}</span>
+                </a>
+
+                <button
+                  type="button"
+                  onClick={handleCopyDraft}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#FAF8FC] hover:bg-[#E8E1F4] border border-[#D3C9E5] text-xs font-medium text-[#231F29] transition-colors whitespace-nowrap cursor-pointer"
+                >
+                  {copied ? (
+                    <Check className="w-3.5 h-3.5 shrink-0 text-[#5841A3]" aria-hidden="true" />
+                  ) : (
+                    <Copy className="w-3.5 h-3.5 shrink-0 text-[#5841A3]" aria-hidden="true" />
+                  )}
+                  <span>{copied ? contact.copiedDraftLabel : contact.copyDraftLabel}</span>
+                </button>
+              </div>
             </div>
           )}
 

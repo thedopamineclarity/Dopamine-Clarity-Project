@@ -258,6 +258,11 @@ export interface SiteContent {
     successTitle: string;
     successBody: string;
     openDraftLabel: string;
+    openGmailLabel: string;
+    copyDraftLabel: string;
+    copiedDraftLabel: string;
+    draftToLabel: string;
+    draftSubjectLabel: string;
     errorRequired: string;
   };
   footer: {
@@ -1062,8 +1067,13 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       submitButton: 'Send Message',
       successTitle: 'Your pre-filled email draft is ready.',
       successBody:
-        'Your email app should now open with your contact details and message addressed to our team. If it did not open automatically, click the button below to open your draft (or call New Beginnings at 1-647-482-6308 for urgent Scarborough care).',
-      openDraftLabel: 'Open pre-filled email draft',
+        'Your default email app should open with your contact details and message pre-filled. If nothing opened or your mail app did not fill in the text, use Open in Gmail or Copy pre-filled message below (or call New Beginnings at 1-647-482-6308 for urgent Scarborough care).',
+      openDraftLabel: 'Open in Email App',
+      openGmailLabel: 'Open in Gmail',
+      copyDraftLabel: 'Copy pre-filled message',
+      copiedDraftLabel: 'Copied to clipboard',
+      draftToLabel: 'To',
+      draftSubjectLabel: 'Subject',
       errorRequired: 'Please enter your name, a valid email address, and your message.',
     },
     footer: {
@@ -1846,8 +1856,13 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       submitButton: 'Envoyer le message',
       successTitle: 'Votre brouillon de courriel prérempli est prêt.',
       successBody:
-        'Votre application de messagerie devrait s’ouvrir avec vos coordonnées et votre message. Si elle ne s’est pas ouverte automatiquement, utilisez le bouton ci-dessous (ou appelez New Beginnings au 1-647-482-6308 pour une aide urgente à Scarborough).',
-      openDraftLabel: 'Ouvrir le brouillon de courriel',
+        'Votre application de messagerie devrait s’ouvrir avec vos coordonnées et votre message préremplis. Si rien ne s’est ouvert ou si le texte ne s’est pas transféré, utilisez Ouvrir dans Gmail ou Copier le message ci-dessous (ou appelez New Beginnings au 1-647-482-6308 pour une aide urgente à Scarborough).',
+      openDraftLabel: 'Ouvrir dans l’app courriel',
+      openGmailLabel: 'Ouvrir dans Gmail',
+      copyDraftLabel: 'Copier le message prérempli',
+      copiedDraftLabel: 'Copié dans le presse-papiers',
+      draftToLabel: 'À',
+      draftSubjectLabel: 'Objet',
       errorRequired: 'Veuillez indiquer votre nom, un courriel valide et votre message.',
     },
     footer: {
@@ -2630,8 +2645,13 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       submitButton: 'Enviar mensaje',
       successTitle: 'Tu borrador de correo prellenado está listo.',
       successBody:
-        'Tu aplicación de correo debería abrirse con tus datos de contacto y mensaje. Si no se abrió automáticamente, usa el botón de abajo (o llama a New Beginnings al 1-647-482-6308 para atención urgente en Scarborough).',
-      openDraftLabel: 'Abrir borrador de correo',
+        'Tu aplicación de correo debería abrirse con tus datos y mensaje prellenados. Si no se abrió o el texto no se transfirió, usa Abrir en Gmail o Copiar mensaje abajo (o llama a New Beginnings al 1-647-482-6308 para atención urgente en Scarborough).',
+      openDraftLabel: 'Abrir en app de correo',
+      openGmailLabel: 'Abrir en Gmail',
+      copyDraftLabel: 'Copiar mensaje prellenado',
+      copiedDraftLabel: 'Copiado al portapapeles',
+      draftToLabel: 'Para',
+      draftSubjectLabel: 'Asunto',
       errorRequired: 'Por favor ingresa tu nombre, un correo válido y tu mensaje.',
     },
     footer: {
