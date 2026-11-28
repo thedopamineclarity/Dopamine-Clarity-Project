@@ -24,6 +24,7 @@ export interface EducationTopic {
   paragraphs: string[];
   bulletHeading?: string;
   bulletItems?: { label: string; description: string }[];
+  detailGroups?: { heading: string; intro?: string; bullets: string[] }[];
   externalLink?: { introText: string; label: string; url: string };
   keyTakeaway: string;
   citationIds: number[];
@@ -49,6 +50,7 @@ export interface ResourceOrg {
   email?: string;
   website: string;
   availability: string;
+  apaCitation: string;
 }
 
 export interface JournalStory {
@@ -59,6 +61,7 @@ export interface JournalStory {
   date: string;
   topic: 'recovery' | 'family' | 'hope' | 'community';
   content: string;
-  status: 'approved' | 'pending';
+  status: 'approved' | 'pending' | 'rejected';
   consentGiven: boolean;
+  createdAtMs?: number;
 }

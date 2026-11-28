@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Mail, MapPin, CheckCircle2 } from 'lucide-react';
+import { Phone, Mail, MapPin, CheckCircle2, ExternalLink } from 'lucide-react';
 import { SiteContent } from '../../data/translations';
+import { ScrollReveal } from '../ScrollReveal';
 
 interface ContactSectionProps {
   content: SiteContent;
@@ -22,6 +23,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [lastMailtoUrl, setLastMailtoUrl] = useState('');
+  const [lastRecipientEmail, setLastRecipientEmail] = useState('');
 
   useEffect(() => {
     setRecipient(defaultRecipient);
@@ -32,32 +35,77 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
     setError('');
     setSubmitted(false);
 
-    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
-    if (!name.trim() || !emailValid || !message.trim()) {
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim();
+    const trimmedPhone = phone.trim();
+    const trimmedMessage = message.trim();
+
+    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail);
+    if (!trimmedName || !emailValid || !trimmedMessage) {
       setError(contact.errorRequired);
       return;
     }
 
+    const targetEmail =
+      recipient === 'newBeginnings'
+        ? 'info@newbeginningsrecovery.ca'
+        : 'thedopamineclarityproject@gmail.com';
+    const recipientLabel =
+      recipient === 'newBeginnings'
+        ? 'New Beginnings Recovery Home (Scarborough)'
+        : 'The Dopamine Clarity Project';
+
+    const subject =
+      recipient === 'newBeginnings'
+        ? `Scarborough Treatment Inquiry from ${trimmedName}`
+        : `Website Inquiry from ${trimmedName} — The Dopamine Clarity Project`;
+
+    const bodyLines = [
+      `Name: ${trimmedName}`,
+      `Email: ${trimmedEmail}`,
+      `Phone: ${trimmedPhone || 'Not provided'}`,
+      `Recipient: ${recipientLabel}`,
+      '',
+      'Message:',
+      trimmedMessage,
+    ];
+
+    const mailtoUrl = `mailto:${targetEmail}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
+
+    setLastMailtoUrl(mailtoUrl);
+    setLastRecipientEmail(targetEmail);
     setSubmitted(true);
     setName('');
     setEmail('');
     setPhone('');
     setMessage('');
+
+    const anchor = document.createElement('a');
+    anchor.href = mailtoUrl;
+    anchor.style.display = 'none';
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
   };
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-8 py-12 space-y-12">
-      <header className="max-w-3xl space-y-4">
-        <p className="text-sm font-medium text-[#5841A3]">{contact.eyebrow}</p>
-        <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#231F29] leading-tight [text-wrap:balance]">
-          {contact.title}
-        </h1>
-        <p className="text-base sm:text-lg text-[#433D4D] leading-relaxed">
-          {contact.intro}
-        </p>
-      </header>
+      <ScrollReveal>
+        <header className="max-w-3xl space-y-4">
+          <p className="text-sm font-medium text-[#5841A3]">{contact.eyebrow}</p>
+          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#231F29] leading-tight [text-wrap:balance]">
+            {contact.title}
+          </h1>
+          <p className="text-base sm:text-lg text-[#433D4D] leading-relaxed">
+            {contact.intro}
+          </p>
+        </header>
+      </ScrollReveal>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 pt-4 border-t border-[#DFD8EC]">
+      <ScrollReveal delay={0.05}>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 pt-4 border-t border-[#DFD8EC]">
         {/* Left: Direct Contact Cards */}
         <div className="lg:col-span-5 space-y-6">
           {/* New Beginnings Scarborough Card */}
@@ -127,7 +175,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           </h2>
 
           {submitted && (
-            <div className="rounded-lg bg-[#EFEBF8] border border-[#5841A3]/30 p-4 space-y-1">
+            <div className="rounded-lg bg-[#EFEBF8] border border-[#5841A3]/30 p-4 space-y-2.5">
               <div className="flex items-center gap-2 text-sm font-semibold text-[#5841A3]">
                 <CheckCircle2 className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>{contact.successTitle}</span>
@@ -135,6 +183,18 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
               <p className="text-xs sm:text-sm text-[#231F29] leading-relaxed">
                 {contact.successBody}
               </p>
+              {lastMailtoUrl && (
+                <a
+                  href={lastMailtoUrl}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#5841A3] hover:bg-[#463287] text-xs font-medium text-[#FAF8FC] transition-colors whitespace-nowrap"
+                >
+                  <Mail className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                  <span>
+                    {contact.openDraftLabel} ({lastRecipientEmail})
+                  </span>
+                  <ExternalLink className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                </a>
+              )}
             </div>
           )}
 
@@ -246,7 +306,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
             {contact.submitButton}
           </button>
         </form>
-      </div>
+        </div>
+      </ScrollReveal>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { ExternalLink, MapPin, Phone, Mail, AlertCircle, ArrowRight } from 'luci
 import { SiteContent } from '../../data/translations';
 import { SectionId } from '../../types';
 import { ResilientImage } from '../ResilientImage';
+import { ScrollReveal } from '../ScrollReveal';
 
 interface ResourcesSectionProps {
   content: SiteContent;
@@ -27,18 +28,21 @@ export const ResourcesSection: React.FC<ResourcesSectionProps> = ({
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-8 py-12 space-y-16">
       {/* Header */}
-      <header className="max-w-3xl space-y-4">
-        <p className="text-sm font-medium text-[#5841A3]">{resources.eyebrow}</p>
-        <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#231F29] leading-tight [text-wrap:balance]">
-          {resources.title}
-        </h1>
-        <p className="text-base sm:text-lg text-[#433D4D] leading-relaxed">
-          {resources.intro}
-        </p>
-      </header>
+      <ScrollReveal>
+        <header className="max-w-3xl space-y-4">
+          <p className="text-sm font-medium text-[#5841A3]">{resources.eyebrow}</p>
+          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#231F29] leading-tight [text-wrap:balance]">
+            {resources.title}
+          </h1>
+          <p className="text-base sm:text-lg text-[#433D4D] leading-relaxed">
+            {resources.intro}
+          </p>
+        </header>
+      </ScrollReveal>
 
       {/* Emergency Services Strip */}
-      <section className="rounded-xl bg-[#F2EEF8] border border-[#D3C9E5] p-6 sm:p-8 space-y-6">
+      <ScrollReveal>
+        <section className="rounded-xl bg-[#F2EEF8] border border-[#D3C9E5] p-6 sm:p-8 space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="space-y-1.5 max-w-2xl">
             <div className="flex items-center gap-2 text-[#7F291A] font-semibold text-sm">
@@ -62,17 +66,24 @@ export const ResourcesSection: React.FC<ResourcesSectionProps> = ({
                 {card.number}
               </p>
               <p className="text-xs text-[#5A5368] leading-relaxed">{card.note}</p>
+              {card.apaCitation && (
+                <p className="pt-2 border-t border-[#E6DFF3] text-[11px] text-[#615A6D] leading-relaxed pl-4 -indent-4 break-words">
+                  {card.apaCitation}
+                </p>
+              )}
             </div>
           ))}
         </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
       {/* Featured Scarborough Partner: New Beginnings Recovery Home */}
-      <section className="rounded-xl bg-[#FAF8FC] border border-[#D3C9E5] overflow-hidden">
+      <ScrollReveal>
+        <section className="rounded-xl bg-[#FAF8FC] border border-[#D3C9E5] overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
           <div className="lg:col-span-5 bg-[#F2EEF8]">
             <ResilientImage
-              src={`${import.meta.env.BASE_URL}src/assets/images/scarborough_bluffs_calm_1795746664860.jpg`}
+              src={`${import.meta.env.BASE_URL}assets/aistudio/1exterior_2e1e3910.jpg`}
               alt={resources.newBeginnings.imageAlt}
               aspectClassName="aspect-[4/3]"
               className="w-full h-full object-cover min-h-[260px]"
@@ -149,6 +160,15 @@ export const ResourcesSection: React.FC<ResourcesSectionProps> = ({
                 <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
               </a>
             </div>
+
+            <div className="pt-3 border-t border-[#DFD8EC] space-y-1">
+              <p className="text-[11px] font-medium text-[#5841A3]">
+                {resources.apaCitationLabel}
+              </p>
+              <p className="text-xs text-[#5A5368] leading-relaxed pl-5 -indent-5 break-words">
+                {resources.newBeginnings.apaCitation}
+              </p>
+            </div>
           </div>
         </div>
 
@@ -176,14 +196,21 @@ export const ResourcesSection: React.FC<ResourcesSectionProps> = ({
             ))}
           </div>
         </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
       {/* Ontario & National Directory */}
-      <section className="space-y-6">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-          <h2 className="font-serif text-2xl sm:text-3xl font-medium text-[#231F29]">
-            {resources.directoryHeading}
-          </h2>
+      <ScrollReveal>
+        <section className="space-y-6">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+          <div className="space-y-1.5 max-w-2xl">
+            <h2 className="font-serif text-2xl sm:text-3xl font-medium text-[#231F29]">
+              {resources.directoryHeading}
+            </h2>
+            <p className="text-sm text-[#433D4D] leading-relaxed">
+              {resources.directoryNotice}
+            </p>
+          </div>
 
           {/* Interactive Category Filter Bar */}
           <div
@@ -259,11 +286,21 @@ export const ResourcesSection: React.FC<ResourcesSectionProps> = ({
                     <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
                   </a>
                 </div>
+
+                <div className="pt-2.5 border-t border-[#ECE6F6] space-y-0.5">
+                  <p className="text-[11px] font-medium text-[#5841A3]">
+                    {resources.apaCitationLabel}
+                  </p>
+                  <p className="text-[11px] text-[#615A6D] leading-relaxed pl-4 -indent-4 break-words">
+                    {org.apaCitation}
+                  </p>
+                </div>
               </div>
             </article>
           ))}
         </div>
-      </section>
+        </section>
+      </ScrollReveal>
     </div>
   );
 };

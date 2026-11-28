@@ -13,9 +13,9 @@ export const APA_REFERENCES: ReferenceItem[] = [
   {
     id: 2,
     apaCitation:
-      'Mayo Clinic. (2022/2025). Drug addiction (substance use disorder): Symptoms and causes. Mayo Foundation for Medical Education and Research.',
+      'Mayo Clinic. (2022). Drug addiction (substance use disorder): Symptoms and causes. Mayo Foundation for Medical Education and Research.',
     publisher: 'Mayo Clinic',
-    year: '2022/2025',
+    year: '2022',
     topicArea: 'What Is Addiction & How It Develops (Tolerance & Prescription Risk)',
     url: 'https://www.mayoclinic.org/diseases-conditions/drug-addiction/symptoms-causes/syc-20365112',
   },
@@ -135,5 +135,77 @@ export const APA_REFERENCES: ReferenceItem[] = [
     year: '2024',
     topicArea: 'Canadian & Ontario Addiction Prevalence Statistics',
     url: 'https://ontario.cmha.ca/addiction-and-substance-use-and-addiction/',
+  },
+  {
+    id: 16,
+    apaCitation:
+      'Health Canada. (2024). Talking about drugs: Help a friend with substance use. Government of Canada.',
+    publisher: 'Health Canada',
+    year: '2024',
+    topicArea: 'When to Seek Help & Supporting a Friend',
+    url: 'https://www.canada.ca/en/health-canada/services/substance-use/talking-about-drugs/help-friend.html',
+  },
+  {
+    id: 17,
+    apaCitation:
+      'Nemours KidsHealth. (2024). Dealing with addiction (for teens). The Nemours Foundation.',
+    publisher: 'Nemours KidsHealth',
+    year: '2024',
+    topicArea: 'Youth Warning Signs & Reaching Out for Support',
+    url: 'https://kidshealth.org/en/teens/addictions.html',
+  },
+  {
+    id: 18,
+    apaCitation:
+      'Centre for Addiction and Mental Health. (2024). Addiction: Mental illness and addiction index. CAMH.',
+    publisher: 'Centre for Addiction and Mental Health (CAMH)',
+    year: '2024',
+    topicArea: 'When to Seek Help & Recognizing Substance Use Disorder',
+    url: 'https://www.camh.ca/en/health-info/mental-illness-and-addiction-index/addiction',
+  },
+  {
+    id: 19,
+    apaCitation:
+      'Kids Help Phone. (2024). 24/7 confidential counselling and text support for youth across Canada. Kids Help Phone.',
+    publisher: 'Kids Help Phone',
+    year: '2024',
+    topicArea: 'Youth Crisis & Confidential Helpline (1-800-668-6868 / Text CONNECT to 686868)',
+    url: 'https://kidshelpphone.ca/',
+  },
+  {
+    id: 20,
+    apaCitation:
+      'MyHealthAlberta. (2026). Alcohol and drug problems: Symptoms and withdrawal overview. Government of Alberta.',
+    publisher: 'MyHealthAlberta',
+    year: '2026',
+    topicArea: 'What Substance Use Disorder Looks Like & Withdrawal Symptoms',
+    url: 'https://myhealth.alberta.ca/Health/pages/conditions.aspx?hwid=alcpb',
+  },
+  {
+    id: 21,
+    apaCitation:
+      'HealthLink BC. (2023). Alcohol and drug use. Government of British Columbia.',
+    publisher: 'HealthLink BC',
+    year: '2023',
+    topicArea: 'Behavioural Signs & Daily Impact of Substance Use',
+    url: 'https://www.healthlinkbc.ca/healthwise/alcohol-and-drug-use',
+  },
+  {
+    id: 22,
+    apaCitation:
+      'National Institute on Drug Abuse. (2020). Drugs, brains, and behavior: The science of addiction — Addiction and health. U.S. Department of Health and Human Services, National Institutes of Health.',
+    publisher: 'National Institute on Drug Abuse (NIDA)',
+    year: '2020',
+    topicArea: 'Physical Health Effects, Nerve Damage, Infections & Co-occurring Mental Illness',
+    url: 'https://nida.nih.gov/publications/drugs-brains-behavior-science-addiction/addiction-health',
+  },
+  {
+    id: 23,
+    apaCitation:
+      'Centers for Disease Control and Prevention. (2025). About alcohol use: Short-term and long-term health risks. U.S. Department of Health and Human Services.',
+    publisher: 'Centers for Disease Control and Prevention (CDC)',
+    year: '2025',
+    topicArea: 'Short-Term & Long-Term Effects of Alcohol Use',
+    url: 'https://www.cdc.gov/alcohol/about-alcohol-use/index.html',
   },
 ];

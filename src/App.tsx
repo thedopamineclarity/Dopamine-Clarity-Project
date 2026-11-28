@@ -11,6 +11,7 @@ import { JournalSection } from './components/sections/JournalSection';
 import { ReferencesSection } from './components/sections/ReferencesSection';
 import { DonateSection } from './components/sections/DonateSection';
 import { ContactSection } from './components/sections/ContactSection';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 const VALID_SECTIONS: SectionId[] = [
   'home',
@@ -78,7 +79,8 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF8FC] text-[#231F29]">
+    <ErrorBoundary>
+      <div className="min-h-screen flex flex-col bg-[#FAF8FC] text-[#231F29]">
       <Header
         content={content}
         activeSection={activeSection}
@@ -128,6 +130,7 @@ export default function App() {
       </main>
 
       <Footer content={content} onNavigate={handleNavigate} />
-    </div>
+      </div>
+    </ErrorBoundary>
   );
 }

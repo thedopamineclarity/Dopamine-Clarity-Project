@@ -86,12 +86,20 @@ export interface SiteContent {
     teamSubheading: string;
     communityImageAlt: string;
     members: TeamMember[];
+    socialCard: {
+      heading: string;
+      handle: string;
+      body: string;
+      buttonLabel: string;
+      url: string;
+    };
   };
   education: {
     eyebrow: string;
     title: string;
     intro: string;
     plainLanguageNote: string;
+    headerImageAlt: string;
     statsHeading: string;
     statsIntro: string;
     statsSourceLabel: string;
@@ -101,6 +109,20 @@ export interface SiteContent {
     videosIntro: string;
     videosWatchLabel: string;
     videos: { label: string; description: string; url: string }[];
+    progressLabel: string;
+    viewAllModeLabel: string;
+    focusModeLabel: string;
+    markReadLabel: string;
+    markedReadLabel: string;
+    prevTopicLabel: string;
+    nextTopicLabel: string;
+    mythFactHeading: string;
+    mythFactIntro: string;
+    mythLabel: string;
+    factLabel: string;
+    revealFactLabel: string;
+    hideFactLabel: string;
+    mythFacts: { myth: string; fact: string; citationId: number }[];
     keyTakeawayLabel: string;
     sourcesLabel: string;
     viewReferenceLabel: string;
@@ -110,7 +132,6 @@ export interface SiteContent {
     nextStepCta: string;
   };
   references: {
-    eyebrow: string;
     title: string;
     intro: string;
     verifiedNote: string;
@@ -139,13 +160,27 @@ export interface SiteContent {
     storyBodyPlaceholder: string;
     consentText: string;
     submitButton: string;
+    submittingButton: string;
     validationError: string;
+    lengthError: string;
+    submitFailedError: string;
     submittedSuccessTitle: string;
     submittedSuccessBody: string;
     pendingQueueHeading: string;
     pendingBadgeText: string;
-    approveDemoButton: string;
-    approvedNote: string;
+    pendingEmptyText: string;
+    coordinatorHeading: string;
+    coordinatorSubtitle: string;
+    coordinatorSignInButton: string;
+    coordinatorSignOutButton: string;
+    coordinatorSignedInAs: string;
+    coordinatorUnauthorizedNote: string;
+    approveButton: string;
+    declineButton: string;
+    unpublishButton: string;
+    deleteButton: string;
+    pendingTabLabel: string;
+    approvedTabLabel: string;
     initialStories: JournalStory[];
   };
   resources: {
@@ -154,7 +189,7 @@ export interface SiteContent {
     intro: string;
     emergencyHeading: string;
     emergencyBody: string;
-    emergencyCards: { title: string; number: string; note: string }[];
+    emergencyCards: { title: string; number: string; note: string; apaCitation?: string }[];
     newBeginnings: {
       eyebrow: string;
       title: string;
@@ -169,19 +204,22 @@ export interface SiteContent {
       emailLabel: string;
       websiteLabel: string;
       contactCta: string;
+      apaCitation: string;
     };
     directoryHeading: string;
+    directoryNotice: string;
     directoryCategories: Record<'all' | 'helpline' | 'treatment' | 'youth' | 'research', string>;
     visitWebsiteLabel: string;
     availabilityLabel: string;
+    apaCitationLabel: string;
     organizations: ResourceOrg[];
   };
   donate: {
     eyebrow: string;
     title: string;
     intro: string;
-    donationTab: string;
-    volunteerTab: string;
+    prototypeNoticeTitle: string;
+    prototypeNoticeBody: string;
     frequencyLabel: string;
     oneTimeLabel: string;
     monthlyLabel: string;
@@ -192,18 +230,9 @@ export interface SiteContent {
     dedicateLabel: string;
     donateButton: string;
     impactHeading: string;
-    impactItems: { amount: string; description: string }[];
+    impactItems: string[];
     donationSuccessTitle: string;
     donationSuccessBody: string;
-    volunteerHeading: string;
-    volunteerIntro: string;
-    volunteerRoleLabel: string;
-    volunteerRoles: string[];
-    volunteerAvailabilityLabel: string;
-    volunteerMessageLabel: string;
-    volunteerSubmitButton: string;
-    volunteerSuccessTitle: string;
-    volunteerSuccessBody: string;
   };
   contact: {
     eyebrow: string;
@@ -228,6 +257,7 @@ export interface SiteContent {
     submitButton: string;
     successTitle: string;
     successBody: string;
+    openDraftLabel: string;
     errorRequired: string;
   };
   footer: {
@@ -270,7 +300,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
         'You do not have to go through this alone. On our website, we offer educational information on alcohol and drug addiction that is easy to understand, a place for you to safely share your experiences, and trusted recovery pathways across Ontario, so that you are able to receive the best support.',
       primaryCta: 'Explore Addiction Education',
       secondaryCta: 'Find Treatment & Support',
-      heroImageAlt: 'Serene sunlit Ontario lake surrounded by calm pine trees in morning mist',
+      heroImageAlt: 'Small group of people sitting together on a sunny beach in warm sunlight, symbolizing calm support and community',
       heroCaption: 'Recovery begins with receiving accurate information and compassionate care.',
       overviewHeading: 'Take a moment to explore our website',
       overviewIntro:
@@ -282,7 +312,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           number: '01.',
           title: 'About Us & Our Team',
           description:
-            'Meet the six students behind The Dopamine Clarity Project, our mission to reduce stigma, and how we verify information with New Beginnings.',
+            'Meet the six students who founded The Dopamine Clarity Project with the mission of reducing stigma surrounding addiction in the community.',
           action: 'Meet the team',
         },
         {
@@ -290,7 +320,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           number: '02.',
           title: 'Educational Overview',
           description:
-            'Clear, gentle answers on how addiction develops in the brain, visible signs, physical and mental health effects, and when to seek help.',
+            'Learn how addiction can develop in the brain, visible signs, physical and mental health effects, and when to seek help.',
           action: 'Read the guide',
         },
         {
@@ -314,15 +344,15 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           number: '05.',
           title: 'APA References',
           description:
-            'Every educational statement on our website is backed by APA-formatted citations with direct links to CAMH, CCSA, NIDA, and Health Canada.',
+            'Every educational statement on our website is backed by APA-formatted citations with direct links to the original sources.',
           action: 'Inspect sources',
         },
         {
           sectionId: 'donate',
           number: '06.',
-          title: 'Donate & Volunteer',
+          title: 'Support & Donate',
           description:
-            'Support Ontario awareness workshops, multilingual print guides, and youth outreach by contributing or volunteering with our coordinators.',
+            'Learn how voluntary community donations help fund local awareness initiatives and support local recovery organizations.',
           action: 'Support the cause',
         },
       ],
@@ -354,10 +384,10 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
         journalShareCta: 'Share your story safely',
         referencesEyebrow: '05 · Verified APA Research',
         referencesTitle: 'Every fact linked directly to public health sources',
-        referencesCta: 'View all 15 APA references',
+        referencesCta: 'View all 23 APA references',
         supportEyebrow: '06 · Support & Reach Out',
         supportTitle: 'Stand with Ontario families or send us a message',
-        donateCta: 'Donate or volunteer',
+        donateCta: 'Learn about donations',
         contactCta: 'Contact New Beginnings or us',
       },
     },
@@ -394,44 +424,44 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
             'We aim to host community events and create a safe, moderated journal space for people to share their own experiences and remind others that they are never alone.',
         },
       ],
-      teamHeading: 'Our Coordination Team',
-      teamSubheading: 'Six students united by lived concern, community service, and careful research.',
-      communityImageAlt: 'Warm sunlit community table where people share tea and conversation in comfort',
+      teamHeading: 'Meet Our Team!',
+      teamSubheading: 'Six high-school students that aim to reduce the stigma surrounding addiction.',
+      communityImageAlt: 'Circle of hands with purple beaded bracelets coming together in unity and peer support',
       members: [
         {
           id: 'isla',
           name: 'Isla Mina',
           role: 'Outreach and Project Coordinator',
           statement:
-            'Hello, I am Isla! My goal is to ensure that families have access to the knowledge, resources, and support they need to understand and combat addiction through education and community outreach.',
+            'Dedicated to reaching out to the community and organizing awareness events in order to ensure that families have access to the knowledge, resources, and support they need to understand and combat addiction.',
         },
         {
           id: 'aleena',
           name: 'Aleena Hijaz',
           role: 'Documentation Coordinator',
           statement:
-            'Focused on organizing evidence-based educational resources and maintaining accurate APA citations so every visitor can trust the facts they read.',
+            'Oversees project documentation and maintains accurate records of our progress to ensure that everything we put out accurately reflects our initiatives and goals, so that we can make a positive difference in society.',
         },
         {
           id: 'alyna',
           name: 'Alyna Zita Caldeira',
           role: 'Graphic Design and Communications Coordinator',
           statement:
-            'Dedicated to shaping calm, welcoming visual communications that replace fear and stigma with warmth and clarity.',
+            'Focused on creating effective visual communications that aim to educate the public and replace fear and stigma with warmth and compassion.',
         },
         {
           id: 'marian',
           name: 'Marian Albert',
           role: 'Graphic Design and Communications Coordinator',
           statement:
-            'Designing approachable educational materials and community outreach visuals that help families navigate support with confidence.',
+            'Focused on designing educational materials and community outreach visuals in order to help families navigate their journey with confidence.',
         },
         {
           id: 'ashwin',
           name: 'Ashwin Austin-Rogesan',
           role: 'Community Spokesperson',
           statement:
-            'Representing our student mission in public conversations to encourage open, respectful dialogue about recovery across Ontario.',
+            'Represents our student mission to the public in order to encourage individuals to have open and respectful conversations regarding recovery across Ontario.',
         },
         {
           id: 'clark',
@@ -441,14 +471,22 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
             'Coordinating awareness events, community partnerships, and volunteer initiatives so support reaches neighborhoods directly.',
         },
       ],
+      socialCard: {
+        heading: 'Follow Our Journey on Instagram',
+        handle: '@thedopamineclarity',
+        body: 'Would you like to support our cause? Follow us on social media to stay informed, learn more about our initiatives, and find ways to get involved!',
+        buttonLabel: 'Visit @thedopamineclarity on Instagram',
+        url: 'https://www.instagram.com/thedopamineclarity/',
+      },
     },
     education: {
       eyebrow: 'Educational Overview',
-      title: 'Understanding alcohol and drug addiction in plain, honest language.',
+      title: 'Helping you understand alcohol and drug addiction.',
       intro:
-        'Medical terminology can feel overwhelming when you are simply looking for answers. Below are clear, compassionate explanations reviewed alongside real treatment professionals and backed by cited research.',
+        'Medical terminology can feel confusing and overwhelming when you are simply looking for answers, so below are clear and simple explanations reviewed alongside real treatment professionals and backed by cited research.',
       plainLanguageNote: 'Click any citation number (such as [1]) to inspect its full APA source.',
-      statsHeading: 'Addiction Statistics in Canada & Ontario',
+      headerImageAlt: 'Sunlit wooden study desk with open educational notebooks, dried lavender, and warm herbal tea',
+      statsHeading: 'Did You Know?',
       statsIntro:
         'Understanding how common substance use challenges are helps show that no person or family is ever alone.',
       statsSourceLabel: 'Source: Canadian Mental Health Association (CMHA) Ontario',
@@ -497,6 +535,36 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           url: 'https://youtu.be/aTS5OW85Og4?si=lF0Q3Zbo_aPmb6DE',
         },
       ],
+      progressLabel: 'Reading progress',
+      viewAllModeLabel: 'Full Guide',
+      focusModeLabel: 'Focus One Topic',
+      markReadLabel: 'Mark topic as read',
+      markedReadLabel: 'Completed',
+      prevTopicLabel: 'Previous topic',
+      nextTopicLabel: 'Next topic',
+      mythFactHeading: 'Common Misunderstandings',
+      mythFactIntro: 'Select any card below to reveal the verified health fact behind common misunderstandings.',
+      mythLabel: 'Common Myth',
+      factLabel: 'Verified Fact',
+      revealFactLabel: 'Reveal fact',
+      hideFactLabel: 'Show myth',
+      mythFacts: [
+        {
+          myth: 'Someone has to wait until something bad happens before asking for help.',
+          fact: 'Health Canada and CAMH advise reaching out the moment substance use begins affecting your health, relationships, or life—you do not have to wait for a crisis.',
+          citationId: 18,
+        },
+        {
+          myth: 'Substance use disorder is simply a personal weakness or lack of willpower.',
+          fact: 'Addiction is a medical disease that changes dopamine activity in the brain’s reward system and can stem from genetics, stress, mental health, or prescribed medicines.',
+          citationId: 3,
+        },
+        {
+          myth: 'There is only one fixed path for recovery and treatment.',
+          fact: 'SUD affects everyone differently, so recovery may involve medical withdrawal support, CBT/DBT or family therapy, outpatient counseling, or residential care.',
+          citationId: 7,
+        },
+      ],
       keyTakeawayLabel: 'Summary',
       sourcesLabel: 'Cited Sources:',
       viewReferenceLabel: 'View in APA References',
@@ -531,36 +599,59 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           number: '03.',
           question: 'What does it look like?',
           paragraphs: [
-            'Because many people work hard to hide their struggle out of shame or fear of judgment, signs are not always dramatic. Early clues can include pulling away from close friends or family, sudden changes in sleep or energy, missed school or work responsibilities, or needing larger amounts to get the same effect [1, 10].',
-            'You might also notice someone trying to cut back several times without success, feeling irritable or shaky when they go without a drink or substance, or organizing their schedule around when they can use next [1, 13].',
+            'A person who has substance use disorder may show symptoms, like an increased use of the substance/using it for a longer time, not being able to cut down or control their use, and not being able to do their main jobs at work, at school, or at home. Substance use becomes the most important activity to them, often becoming a priority (MyHealthAlberta, 2026). Substance use also shows that people spend a lot of time trying to obtain the drug and ignore other activities in order to do this (Alcohol and Drug Use | HealthLink BC, 2023).',
+            'When it comes to having to stop the substance or use less of it, they may experience withdrawals, which refers to the physical and mental symptoms that occur which affect the body. It may include sweating, shakiness, nausea, fatigue, cravings, anxiety, restlessness, mood swings and low moods. Addiction to alcohol may show symptoms such as blackouts, personality changes, and denial of even having a problem.',
           ],
           keyTakeaway:
-            'Common signs include pulling away from loved ones, big changes in sleep or mood, needing more of a substance, and finding it hard to cut back.',
-          citationIds: [1, 10, 13],
+            'Signs include needing more of a substance, trouble cutting down, neglecting school or work, prioritizing substance use, and experiencing withdrawal symptoms or blackouts.',
+          citationIds: [20, 21],
         },
         {
           id: 'body-and-mind',
           number: '04.',
           question: 'How does it physically affect the body and mental health?',
           paragraphs: [
-            'Physically, heavy alcohol or drug use places ongoing stress on the liver, heart, stomach, immune system, and nervous system. It can disrupt deep sleep, raise blood pressure, cause chronic fatigue, and increase long-term risks for heart and liver conditions [9, 11].',
-            'Mentally and emotionally, substances can mimic or intensify depression, panic, paranoia, and memory fog. Many people use substances to quiet existing mental health pain, only to find that the comedown leaves their anxiety or sadness even heavier—a pairing doctors call concurrent disorders [11, 12].',
+            'Physically, heavy alcohol or drug use can place ongoing stress on the liver, heart, stomach, immune system, and nervous system, and it can affect deep sleep, raise blood pressure, cause chronic fatigue, and increase long-term risks for heart and liver conditions [9, 11].',
+            'Inhalants can damage or destroy nerve cells in the brain or the nervous system outside the brain and spinal cord. Drug use can also increase the risk of infections, and HIV and hepatitis C, a serious liver disease, can occur from sharing unhygienic injection items or from unsafe intercourse. Skin infections, like cellulitis, can also happen after being exposed to bacteria by drug use through injections [22]. When it comes to mental health, drug use and mental illnesses may co-exist, and mental disorders such as anxiety, depression, or schizophrenia may come before addiction. Substances can even mimic or hide the symptoms of depression, panic, paranoia, and memory fog [12].',
+          ],
+          detailGroups: [
+            {
+              heading: 'Effects of Short-Term Alcohol Use',
+              intro: 'Drinking over the limit can lead to these harmful health effects:',
+              bullets: [
+                'Injuries (ex. motor crashes, falls, drowning, burns)',
+                'Violence such as homicide, suicide, sexual violence and intimate partner violence',
+                'Alcohol poisoning; having high blood alcohol levels can affect breathing and heart rate',
+                'Overdose',
+                'Sexually transmitted infections from unsafe intercourse',
+                'Miscarriage, stillbirth, and fetal alcohol spectrum disorder due to alcohol use during pregnancy (CDC, 2025).',
+              ],
+            },
+            {
+              heading: 'Effects of Long-Term Alcohol Use',
+              intro: 'Over time, drinking alcohol can have these effects:',
+              bullets: [
+                'Cancer; the use of alcohol like red wine, white wine and liquor, is linked with cancer. The risk of some cancers may increase with any amount of alcohol use, including breast cancer in women.',
+                'More than 20,000 people pass away from alcohol-related cancers each year in the United States.',
+                'It can also lead to high blood pressure, heart disease, liver disease, stroke, digestive problems and a weaker immune system.',
+                'Mental health conditions may arise, such as learning difficulties at school and work, memory problems like dementia, and relationship issues with family and friends (CDC, 2025).',
+              ],
+            },
           ],
           keyTakeaway:
-            'Long-term substance use tires out the body’s major organs and often makes anxiety, sadness, and poor sleep feel even worse.',
-          citationIds: [9, 11, 12],
+            'Long-term substance use can damage nerves, raise infection and cancer risks, harm major organs, and intensify anxiety, depression, and memory problems.',
+          citationIds: [9, 11, 12, 22, 23],
         },
         {
           id: 'when-to-seek-help',
           number: '05.',
           question: 'When should someone seek help?',
           paragraphs: [
-            'A common myth is that someone must lose everything before seeking support. In truth, early conversations with a doctor, counselor, helpline, or treatment centre like New Beginnings lead to gentler, safer recovery [13, 14].',
-            'Consider reaching out right away if alcohol or drugs are affecting your sleep, relationships, safety, finances, or emotional peace—or if stopping suddenly causes sweating, shaking, or severe distress, as medical supervision keeps withdrawal safe [1, 13, 14].',
+            'As per health organizations in Canada, such as CAMH (The Centre for Addiction and Mental Health) and Health Canada, you should consider seeking help for alcohol or drug abuse the moment they begin affecting your health, relationships, and life. You should not wait for something bad to happen before seeking help. You can consider seeking help from others if you are experiencing intense cravings, loss of control over the amount consumed, declining academic performance, and physical discomfort from stopping. Seeking help from an adult, school counselor, and/or a doctor is a wonderful idea and you can even contact Kids Help Phone by calling 1-800-668-6868 or texting CONNECT to 686868.',
           ],
           keyTakeaway:
-            'You do not have to wait for a crisis. The best time to reach out is whenever substance use begins causing worry, stress, or harm.',
-          citationIds: [1, 13, 14],
+            'Reach out as soon as alcohol or drug use affects your health, school, or relationships—talk to a trusted adult, doctor, or Kids Help Phone (1-800-668-6868 or text CONNECT to 686868).',
+          citationIds: [16, 17, 18, 19],
         },
         {
           id: 'types-of-treatment',
@@ -633,8 +724,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       nextStepCta: 'Explore Resources & Treatment',
     },
     references: {
-      eyebrow: 'Verified Scholarship',
-      title: 'APA References & Original Sources',
+      title: 'Our References and Original Sources',
       intro:
         'Below are our references for each and every educational claim we make on The Dopamine Clarity Project, which are grounded in peer-reviewed guidance and public health publications. Follow any link below to be directed to the original source.',
       verifiedNote: 'Formatted in APA 7th Edition · Reviewed alongside Scarborough treatment providers',
@@ -645,19 +735,19 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       eyebrow: 'Real Stories & Reflections',
       title: 'Community Journal',
       intro:
-        'Hearing honest voices reminds us that healing happens in community. Read reflections shared by individuals and families, or contribute your own story with full control over privacy.',
+        'Recovery is real, and it happens in the community. Read reflections/journals shared by individuals and families, or contribute your own story with full control over privacy.',
       imageAlt: 'Open linen-bound journal beside a warm cup of herbal tea and eucalyptus in soft light',
       filterAll: 'All Stories',
       topics: {
         recovery: 'Personal Recovery',
         family: 'Family & Loved Ones',
-        hope: 'Quiet Hope',
+        hope: 'Hope',
         community: 'Community Support',
       },
       anonymousLabel: 'Anonymous',
       moderationBannerTitle: 'Careful Review Before Publishing',
       moderationBannerBody:
-        'To protect every visitor’s emotional safety and dignity, all story submissions are reviewed and approved by our coordination team before appearing publicly. You may choose to post anonymously, and explicit consent is required before anything is shared.',
+        'To protect everyone’s safety and dignity, all submissions are reviewed and approved by our coordination team before appearing on our page publicly. You may choose to post anonymously, and consent is required before anything is shared.',
       formHeading: 'Share Your Story',
       formSubheading: 'Your experience could bring comfort to someone reading late at night.',
       nameLabel: 'Your Name (or preferred display name)',
@@ -672,15 +762,33 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       consentText:
         'I give my informed consent for The Dopamine Clarity Project to review, approve, and publish this story on the website (anonymously if selected above).',
       submitButton: 'Submit for Team Review',
+      submittingButton: 'Submitting securely...',
       validationError:
         'Please include a title, your story, your name (or choose anonymous), and check the consent box before submitting.',
+      lengthError:
+        'Please enter a title (3–140 characters) and a story (10–4,000 characters).',
+      submitFailedError:
+        'Unable to send your story right now. Please check your connection and try again.',
       submittedSuccessTitle: 'Thank you for trusting us with your voice.',
       submittedSuccessBody:
-        'Your story has been placed in our review queue. A team coordinator will carefully review it for safety and publish it once approved.',
-      pendingQueueHeading: 'Your Submissions Awaiting Review',
-      pendingBadgeText: 'Pending Coordinator Review',
-      approveDemoButton: 'Simulate Coordinator Approval',
-      approvedNote: 'Approved and published to the Journal below.',
+        'Your story has been sent securely to our coordination team’s review queue. Once approved, it will appear on this Journal page.',
+      pendingQueueHeading: 'Pending Submissions',
+      pendingBadgeText: 'Awaiting Review',
+      pendingEmptyText: 'No stories are waiting for review right now.',
+      coordinatorHeading: 'Team Coordinator Review',
+      coordinatorSubtitle:
+        'Sign in with a verified Dopamine Clarity coordinator Google account to review incoming stories and publish approved reflections.',
+      coordinatorSignInButton: 'Coordinator Sign In with Google',
+      coordinatorSignOutButton: 'Sign out',
+      coordinatorSignedInAs: 'Signed in as',
+      coordinatorUnauthorizedNote:
+        'This Google account does not have coordinator review permissions. Sign out or switch to a verified coordinator account.',
+      approveButton: 'Approve & Publish',
+      declineButton: 'Decline',
+      unpublishButton: 'Move to Pending',
+      deleteButton: 'Delete',
+      pendingTabLabel: 'Pending',
+      approvedTabLabel: 'Published',
       initialStories: [
         {
           id: 'story-1',
@@ -733,44 +841,49 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           title: 'Emergency Medical & Police',
           number: '911',
           note: '24/7 immediate life-saving emergency response across Canada',
+          apaCitation: 'Government of Canada. (n.d.). Emergency services and 911 in Canada.',
         },
         {
           title: 'Suicide Crisis Helpline',
           number: '988',
           note: 'Call or text 988 anytime for free, bilingual emotional crisis support',
+          apaCitation:
+            'Suicide Crisis Helpline. (n.d.). 988: Suicide Crisis Helpline. https://988.ca/',
         },
         {
           title: 'Health811 Ontario',
           number: '811',
           note: 'Speak confidentially with a registered nurse 24/7 (1-866-797-0000)',
+          apaCitation:
+            'Government of Ontario. (n.d.). Health811: Connect with a registered nurse day or night. https://www.ontario.ca/page/health811',
         },
       ],
       newBeginnings: {
         eyebrow: 'Featured Scarborough Partner',
         title: 'New Beginnings Recovery Home',
         subtitle: 'Licensed Residential Addiction & Mental Health Treatment in Scarborough, ON',
-        imageAlt: 'Calm sunrise over Lake Ontario along the Scarborough Bluffs shoreline',
+        imageAlt: 'Exterior of New Beginnings Recovery Home brick and stone residence on a quiet tree-lined street in Scarborough',
         overview:
-          'New Beginnings Recovery Home is a CARF-accredited residential treatment centre near the Scarborough Bluffs. They review our educational material for clinical accuracy and provide compassionate, structured care for individuals seeking inpatient recovery.',
+          'New Beginnings Recovery Home is a licensed inpatient drug & alcohol addiction and mental-health treatment centre located near the Scarborough Bluffs. They support substance addictions, co-occurring mental health disorders, such as PTSD, depression, and anxiety, relapse prevention and early recovery, life-skills, family and community reintegration.',
         processHeading: 'Their Treatment Process',
         processSteps: [
           {
             step: 'Step 01',
             title: 'Confidential Assessment & Admission',
             detail:
-              'Reach out directly by phone or email for an intake conversation. New Beginnings offers timely admissions—often avoiding long public waitlists—to welcome clients safely.',
+              'Reach out directly by phone or email for an intake conversation. New Beginnings offers immediate admissions, often avoiding long public waitlists, to welcome clients safely.',
           },
           {
             step: 'Step 02',
             title: '28-Day Structured Residential Care',
             detail:
-              'Clients stay in a calm home-like environment with 24/7 supervision and on-call medical care, stepping away from daily triggers to focus fully on stabilization.',
+              'Clients stay in a home-like environment during a four-week residential (28-day) program, with 24/7 supervision and on-call medical care. Individual therapy and group treatment is included, as well as treatment such as CBT, DBT, and SMART recovery.',
           },
           {
             step: 'Step 03',
             title: 'Holistic Biopsychosocial Healing',
             detail:
-              'An interprofessional team—physicians, addiction counselors, nutritionists, occupational therapists, and family therapists—works together on physical, emotional, social, and spiritual recovery.',
+              'An interprofessional team, which includes physicians, addiction counselors, nutritionists, occupational therapists, and family therapists, work together on physical, emotional, social, and spiritual recovery.',
           },
           {
             step: 'Step 04',
@@ -785,8 +898,12 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
         emailLabel: 'Email',
         websiteLabel: 'Visit New Beginnings Website',
         contactCta: 'Inquire About Scarborough Care',
+        apaCitation:
+          'New Beginnings Recovery Home. (n.d.). Residential addiction and mental health treatment. https://newbeginningsrecovery.ca/',
       },
       directoryHeading: 'Ontario & National Support Directory',
+      directoryNotice:
+        'These resources are actively being updated to provide individuals and families with the greatest amount of support possible.',
       directoryCategories: {
         all: 'All Resources',
         helpline: '24/7 Helplines',
@@ -796,6 +913,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       },
       visitWebsiteLabel: 'Visit official website',
       availabilityLabel: 'Availability:',
+      apaCitationLabel: 'APA 7th Edition Reference:',
       organizations: [
         {
           id: 'connex',
@@ -808,6 +926,8 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           textInfo: 'Text CONNEX to 247247',
           website: 'https://www.connexontario.ca/',
           availability: '24/7 Free & Confidential',
+          apaCitation:
+            'ConnexOntario. (n.d.). Mental health, addiction and problem gambling help. https://www.connexontario.ca/',
         },
         {
           id: 'camh',
@@ -819,6 +939,8 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           phone: '1-800-463-6273',
           website: 'https://www.camh.ca/',
           availability: 'Clinical hours & online resources',
+          apaCitation:
+            'Centre for Addiction and Mental Health. (n.d.). Mental health and addiction care. https://www.camh.ca/',
         },
         {
           id: 'raam',
@@ -829,6 +951,8 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
             'Low-barrier walk-in medical clinics where individuals can receive addiction care, medication support, and referrals with no appointment or doctor referral required.',
           website: 'https://www.metaphi.ca/raam-clinics',
           availability: 'Walk-in clinic hours vary by city',
+          apaCitation:
+            'Mentoring, Education, and Clinical Tools for Addiction: Partners in Health Integration. (n.d.). Rapid Access Addiction Medicine (RAAM) clinics. https://www.metaphi.ca/raam-clinics',
         },
         {
           id: 'kids-help',
@@ -841,6 +965,8 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           textInfo: 'Text CONNECT to 686868',
           website: 'https://kidshelpphone.ca/',
           availability: '24/7 Youth Support',
+          apaCitation:
+            'Kids Help Phone. (n.d.). Free, confidential 24/7 support for youth. https://kidshelpphone.ca/',
         },
         {
           id: 'ccsa',
@@ -851,16 +977,45 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
             'Evidence-based national guidelines on alcohol and substance health, youth prevention toolkits, and stigma-reduction guides.',
           website: 'https://www.ccsa.ca/',
           availability: 'Open public research library',
+          apaCitation:
+            'Canadian Centre on Substance Use and Addiction. (n.d.). Substance use and addiction resources. https://www.ccsa.ca/',
+        },
+        {
+          id: 'alpha-house',
+          name: 'AlphaHouse',
+          category: 'treatment',
+          region: 'Toronto, ON',
+          description:
+            'A 4-month post-treatment residential supportive recovery program in an alcohol- and drug-free environment for self-identified men, non-binary people, trans males, and two-spirit individuals (18+) who have completed primary substance use treatment.',
+          phone: '416-469-1700',
+          website: 'https://www.alphahousetoronto.ca/',
+          availability: 'Contact for bed availability & intake (647 Broadview Ave)',
+          apaCitation:
+            'Alpha House Toronto. (n.d.). Post-treatment residential supportive recovery program. https://www.alphahousetoronto.ca/',
+        },
+        {
+          id: 'madison',
+          name: 'Madison Community Services',
+          category: 'treatment',
+          region: 'Toronto, ON',
+          description:
+            'Community-based mental health and concurrent substance use organization supporting adults (16+) through recovery-oriented case management, supportive housing, drop-in spaces, and culturally responsive programs.',
+          phone: '416-977-1333',
+          website: 'https://madisoncs.org/',
+          availability: 'Free publicly funded services (355 Church St)',
+          apaCitation:
+            'Madison Community Services. (n.d.). Community mental health and supportive housing programs. https://madisoncs.org/',
         },
       ],
     },
     donate: {
       eyebrow: 'Support the Cause',
-      title: 'Help us keep addiction education calm, free, and accessible.',
+      title: 'Help us make a difference!',
       intro:
-        'As a student-led Ontario initiative, community generosity allows us to print multilingual pamphlets, host school and neighborhood workshops, and expand local outreach.',
-      donationTab: 'Make a Donation',
-      volunteerTab: 'Volunteer With Us',
+        'As a student-led initiative, community donations allow us to expand our local outreach. The donations will go towards organizations and treatment centres that directly support those suffering from addiction.',
+      prototypeNoticeTitle: 'Prototype Only · Completely Voluntary',
+      prototypeNoticeBody:
+        'Please note that this donations section is a prototype only—this form does not transmit, store, or process payment or personal information yet. Any support or contribution is completely voluntary.',
       frequencyLabel: 'Contribution Frequency',
       oneTimeLabel: 'One-Time Gift',
       monthlyLabel: 'Monthly Support',
@@ -869,41 +1024,16 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       donorNameLabel: 'Full Name (or Anonymous)',
       donorEmailLabel: 'Email for Confirmation',
       dedicateLabel: 'Optional message or dedication',
-      donateButton: 'Complete Pledge',
+      donateButton: 'Preview Pledge (Prototype)',
       impactHeading: 'How Community Contributions Help',
       impactItems: [
-        {
-          amount: '$15',
-          description: 'Prints 30 multilingual pocket resource guides for Ontario community centres and schools.',
-        },
-        {
-          amount: '$35',
-          description: 'Supports translation updates and accessibility tools across English, French, and Spanish.',
-        },
-        {
-          amount: '$75',
-          description: 'Helps fund a student-led awareness workshop and Q&A session for families in Scarborough.',
-        },
+        'Helps fund a student-led awareness initiative and educational sessions for families in Scarborough.',
+        'Helps connect families with recovery services and support networks.',
+        'Helps us collaborate with local organizations and recovery centres.',
       ],
-      donationSuccessTitle: 'Thank you for standing with Ontario families.',
+      donationSuccessTitle: 'Prototype confirmation shown (no data sent).',
       donationSuccessBody:
-        'Your pledge record has been saved! Because The Dopamine Clarity Project is a student-led initiative, our coordinators will follow up via email with official contribution instructions.',
-      volunteerHeading: 'Join Our Student & Community Volunteers',
-      volunteerIntro:
-        'Lend your time to graphic communications, event logistics, translation, or peer outreach across Ontario.',
-      volunteerRoleLabel: 'Area of Interest',
-      volunteerRoles: [
-        'Community Outreach & Family Workshops',
-        'Graphic Design & Social Media Clarity',
-        'Research, Documentation & Translation (FR/ES)',
-        'Events & Logistics Coordination',
-      ],
-      volunteerAvailabilityLabel: 'Weekly Availability (e.g., 2–4 hours)',
-      volunteerMessageLabel: 'Why would you like to get involved?',
-      volunteerSubmitButton: 'Submit Volunteer Interest',
-      volunteerSuccessTitle: 'We are grateful you want to help.',
-      volunteerSuccessBody:
-        'Our Outreach & Logistics coordinators will review your interest and reach out from thedopamineclarityproject@gmail.com.',
+        'Because this donations section is currently a prototype only, no information was transmitted, stored, or processed. Contributions are completely voluntary.',
     },
     contact: {
       eyebrow: 'Reach Out Anytime',
@@ -930,9 +1060,10 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       messagePlaceholder:
         'Share how we can help, or tell us what information you are looking for...',
       submitButton: 'Send Message',
-      successTitle: 'Message received with care.',
+      successTitle: 'Your pre-filled email draft is ready.',
       successBody:
-        'Thank you for reaching out. Your inquiry has been logged for follow-up—for urgent Scarborough treatment questions, please also call New Beginnings at 1-647-482-6308.',
+        'Your email app should now open with your contact details and message addressed to our team. If it did not open automatically, click the button below to open your draft (or call New Beginnings at 1-647-482-6308 for urgent Scarborough care).',
+      openDraftLabel: 'Open pre-filled email draft',
       errorRequired: 'Please enter your name, a valid email address, and your message.',
     },
     footer: {
@@ -975,7 +1106,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
         'Vous n’avez pas à traverser cela seul. Sur notre site, nous offrons des informations éducatives faciles à comprendre sur la dépendance à l’alcool et aux drogues, un espace sécuritaire pour partager vos expériences et des parcours de rétablissement fiables en Ontario afin que vous receviez le meilleur soutien possible.',
       primaryCta: 'Explorer l’éducation',
       secondaryCta: 'Trouver du soutien',
-      heroImageAlt: 'Lac paisible de l’Ontario au lever du soleil entouré de pins calmes dans la brume matinale',
+      heroImageAlt: 'Petit groupe de personnes assises ensemble sur une plage ensoleillée dans une lumière dorée, symbole de soutien calme et de solidarité',
       heroCaption: 'Le rétablissement commence par une information exacte et des soins empreints de compassion.',
       overviewHeading: 'Prenez un moment pour explorer notre site Web',
       overviewIntro:
@@ -987,7 +1118,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           number: '01.',
           title: 'À propos & Notre équipe',
           description:
-            'Découvrez les six étudiants derrière le projet, notre mission contre la stigmatisation et notre collaboration avec New Beginnings.',
+            'Rencontrez les six étudiants qui ont fondé The Dopamine Clarity Project avec pour mission de réduire la stigmatisation entourant la dépendance dans la communauté.',
           action: 'Voir l’équipe',
         },
         {
@@ -995,7 +1126,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           number: '02.',
           title: 'Aperçu éducatif',
           description:
-            'Des réponses simples sur le développement de la dépendance, les signes visibles, les effets physiques et mentaux, et quand demander de l’aide.',
+            'Découvrez comment la dépendance peut se développer dans le cerveau, les signes visibles, les effets physiques et mentaux, et quand demander de l’aide.',
           action: 'Lire le guide',
         },
         {
@@ -1019,15 +1150,15 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           number: '05.',
           title: 'Références APA',
           description:
-            'Chaque information éducative est appuyée par des citations APA avec des liens directs vers CAMH, CCSA, NIDA et Santé Canada.',
+            'Chaque information éducative sur notre site Web est appuyée par des citations au format APA avec des liens directs vers les sources originales.',
           action: 'Voir les sources',
         },
         {
           sectionId: 'donate',
           number: '06.',
-          title: 'Donner & Bénévolat',
+          title: 'Soutenir & Donner',
           description:
-            'Soutenez nos ateliers de sensibilisation, nos brochures multilingues et nos actions communautaires en faisant un don ou du bénévolat.',
+            'Découvrez comment les dons volontaires soutiennent notre sensibilisation locale et les centres de rétablissement.',
           action: 'Soutenir la cause',
         },
       ],
@@ -1059,10 +1190,10 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
         journalShareCta: 'Partager votre histoire en toute sécurité',
         referencesEyebrow: '05 · Sources APA vérifiées',
         referencesTitle: 'Chaque information liée aux sources de santé publique',
-        referencesCta: 'Voir les 15 références APA',
+        referencesCta: 'Voir les 23 références APA',
         supportEyebrow: '06 · Soutenir et nous joindre',
         supportTitle: 'Soutenez les familles de l’Ontario ou écrivez-nous',
-        donateCta: 'Donner ou devenir bénévole',
+        donateCta: 'En savoir plus sur les dons',
         contactCta: 'Contacter New Beginnings ou notre équipe',
       },
     },
@@ -1099,44 +1230,44 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
             'Nous visons à organiser des événements communautaires et à offrir un journal modéré et sécuritaire où chacun peut partager son vécu et rappeler aux autres qu’ils ne sont jamais seuls.',
         },
       ],
-      teamHeading: 'Notre équipe de coordination',
-      teamSubheading: 'Six étudiants unis par le service communautaire et la rigueur.',
-      communityImageAlt: 'Salle communautaire lumineuse où des personnes partagent une conversation autour d’un thé',
+      teamHeading: 'Rencontrez notre équipe !',
+      teamSubheading: 'Six élèves du secondaire qui visent à réduire la stigmatisation entourant la dépendance.',
+      communityImageAlt: 'Cercle de mains portant des bracelets de perles violettes réunies en signe d’unité et d’entraide',
       members: [
         {
           id: 'isla',
           name: 'Isla Mina',
           role: 'Coordinatrice de la sensibilisation et du projet',
           statement:
-            'Bonjour, je m’appelle Isla ! Mon objectif est de veiller à ce que les familles disposent des connaissances, des ressources et du soutien nécessaires pour comprendre et combattre la dépendance grâce à l’éducation et à la sensibilisation communautaire.',
+            'Dévouée à aller à la rencontre de la communauté et à organiser des événements de sensibilisation afin que les familles aient accès aux connaissances, aux ressources et au soutien nécessaires pour comprendre et combattre la dépendance.',
         },
         {
           id: 'aleena',
           name: 'Aleena Hijaz',
           role: 'Coordinatrice de la documentation',
           statement:
-            'Chargée d’organiser les contenus éducatifs et de maintenir des citations APA exactes et vérifiables.',
+            'Supervise la documentation du projet et tient des registres précis de nos progrès afin que tout ce que nous publions reflète fidèlement nos initiatives et nos objectifs pour avoir un impact positif dans la société.',
         },
         {
           id: 'alyna',
           name: 'Alyna Zita Caldeira',
           role: 'Coordinatrice du design graphique et des communications',
           statement:
-            'Conçoit des visuels apaisants et accueillants qui remplacent la peur par la compréhension.',
+            'Axée sur la création de communications visuelles efficaces visant à éduquer le public et à remplacer la peur et la stigmatisation par de la chaleur et de la compassion.',
         },
         {
           id: 'marian',
           name: 'Marian Albert',
           role: 'Coordinatrice du design graphique et des communications',
           statement:
-            'Élabore des supports de communication accessibles aidant les familles à s’orienter sereinement.',
+            'Axée sur la conception de supports éducatifs et de visuels de sensibilisation communautaire pour aider les familles à avancer avec confiance dans leur parcours.',
         },
         {
           id: 'ashwin',
           name: 'Ashwin Austin-Rogesan',
           role: 'Porte-parole communautaire',
           statement:
-            'Porte notre message étudiant dans la communauté pour encourager un dialogue ouvert et respectueux sur le rétablissement.',
+            'Représente notre mission étudiante auprès du public afin d’encourager des conversations ouvertes et respectueuses sur le rétablissement partout en Ontario.',
         },
         {
           id: 'clark',
@@ -1146,14 +1277,22 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
             'Organise les événements de sensibilisation, les partenariats locaux et l’accueil des bénévoles.',
         },
       ],
+      socialCard: {
+        heading: 'Suivez notre parcours sur Instagram',
+        handle: '@thedopamineclarity',
+        body: 'Vous souhaitez soutenir notre cause ? Suivez-nous sur les réseaux sociaux pour rester informé, découvrir nos initiatives et trouver des moyens de vous impliquer !',
+        buttonLabel: 'Voir @thedopamineclarity sur Instagram',
+        url: 'https://www.instagram.com/thedopamineclarity/',
+      },
     },
     education: {
       eyebrow: 'Aperçu éducatif',
-      title: 'Comprendre la dépendance à l’alcool et aux drogues en termes simples.',
+      title: 'Vous aider à comprendre la dépendance à l’alcool et aux drogues.',
       intro:
-        'Les termes médicaux peuvent sembler intimidants lorsqu’on cherche simplement de l’aide. Voici des explications claires, sans jargon compliqué, appuyées par des sources scientifiques.',
+        'La terminologie médicale peut sembler déroutante et accablante lorsqu’on cherche simplement des réponses ; voici donc des explications claires et simples, révisées avec de vrais professionnels et appuyées par des recherches citées.',
       plainLanguageNote: 'Cliquez sur un numéro de source (ex. [1]) pour consulter sa référence APA complète.',
-      statsHeading: 'Statistiques sur la dépendance au Canada et en Ontario',
+      headerImageAlt: 'Bureau en bois baigné de soleil matinal avec cahiers ouverts, lavande séchée et tasse de tisane chaude',
+      statsHeading: 'Le saviez-vous ?',
       statsIntro:
         'Savoir à quel point les troubles liés aux substances sont fréquents rappelle que personne n’est seul.',
       statsSourceLabel: 'Source : Association canadienne pour la santé mentale (ACSM) Ontario',
@@ -1202,6 +1341,36 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           url: 'https://youtu.be/aTS5OW85Og4?si=lF0Q3Zbo_aPmb6DE',
         },
       ],
+      progressLabel: 'Progression de lecture',
+      viewAllModeLabel: 'Guide complet',
+      focusModeLabel: 'Un sujet à la fois',
+      markReadLabel: 'Marquer comme lu',
+      markedReadLabel: 'Lu',
+      prevTopicLabel: 'Sujet précédent',
+      nextTopicLabel: 'Sujet suivant',
+      mythFactHeading: 'Idées reçues courantes',
+      mythFactIntro: 'Sélectionnez une carte ci-dessous pour découvrir le fait vérifié derrière chaque idée reçue.',
+      mythLabel: 'Idée reçue',
+      factLabel: 'Fait vérifié',
+      revealFactLabel: 'Voir le fait',
+      hideFactLabel: 'Voir le mythe',
+      mythFacts: [
+        {
+          myth: 'Il faut attendre qu’il arrive quelque chose de grave avant de demander de l’aide.',
+          fact: 'Santé Canada et CAMH recommandent de demander du soutien dès que la consommation affecte votre santé, vos relations ou votre quotidien, sans attendre une crise.',
+          citationId: 18,
+        },
+        {
+          myth: 'Le trouble lié à l’usage de substances est seulement un manque de volonté.',
+          fact: 'La dépendance est une maladie qui modifie l’activité de la dopamine dans le cerveau et peut être liée à la génétique, au stress, à la santé mentale ou à des médicaments prescrits.',
+          citationId: 3,
+        },
+        {
+          myth: 'Il n’existe qu’une seule façon de se rétablir.',
+          fact: 'Chaque parcours diffère : le rétablissement peut combiner accompagnement médical du sevrage, thérapie (TCC, TCD, familiale) et soins ambulatoires ou résidentiels.',
+          citationId: 7,
+        },
+      ],
       keyTakeawayLabel: 'Résumé',
       sourcesLabel: 'Sources citées :',
       viewReferenceLabel: 'Voir dans les références APA',
@@ -1236,36 +1405,59 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           number: '03.',
           question: 'À quoi ressemble-t-elle au quotidien ?',
           paragraphs: [
-            'Par peur du jugement, beaucoup cachent leur souffrance. On peut observer un éloignement des proches, des changements de sommeil, des absences au travail ou à l’école, ou le besoin de consommer davantage pour le même effet [1, 10].',
-            'Une personne peut aussi essayer plusieurs fois d’arrêter sans y parvenir seule, ou ressentir de l’irritabilité et de l’agitation lorsqu’elle passe un moment sans consommer [1, 13].',
+            'Une personne atteinte d’un trouble lié à l’usage de substances peut présenter des symptômes tels qu’une consommation accrue ou prolongée, l’incapacité de réduire ou de contrôler sa consommation et des difficultés à assumer ses responsabilités au travail, à l’école ou à la maison. La consommation devient son activité principale et une priorité (MyHealthAlberta, 2026). Elle passe également beaucoup de temps à se procurer la substance en délaissant d’autres activités (HealthLink BC, 2023).',
+            'Lorsqu’elle tente d’arrêter ou de diminuer, elle peut ressentir des symptômes de sevrage physiques et mentaux : sueurs, tremblements, nausées, fatigue, fortes envies, anxiété, agitation, sautes d’humeur et baisse de moral. La dépendance à l’alcool peut aussi entraîner des pertes de mémoire (blackouts), des changements de personnalité et le déni du problème.',
           ],
           keyTakeaway:
-            'Les signes courants incluent l’isolement des proches, des changements de sommeil ou d’humeur, une tolérance accrue et la difficulté à réduire sa consommation.',
-          citationIds: [1, 10, 13],
+            'Les signes incluent le besoin de doses plus grandes, la difficulté à réduire, la négligence des responsabilités et des symptômes de sevrage ou pertes de mémoire.',
+          citationIds: [20, 21],
         },
         {
           id: 'body-and-mind',
           number: '04.',
           question: 'Comment affecte-t-elle le corps et la santé mentale ?',
           paragraphs: [
-            'Sur le plan physique, l’alcool et les drogues sollicitent lourdement le foie, le cœur, l’estomac et le système nerveux, perturbant le sommeil profond et l’énergie quotidienne [9, 11].',
-            'Sur le plan mental, ils peuvent amplifier l’anxiété, la dépression et les troubles de concentration. Soigner ensemble le corps et les émotions est essentiel pour retrouver un équilibre durable [11, 12].',
+            'Sur le plan physique, une consommation importante d’alcool ou de drogues peut exercer un stress continu sur le foie, le cœur, l’estomac, le système immunitaire et le système nerveux, et peut affecter le sommeil profond, augmenter la tension artérielle, provoquer une fatigue chronique et accroître les risques à long terme de maladies cardiaques et hépatiques [9, 11].',
+            'Les substances inhalées peuvent endommager ou détruire les cellules nerveuses du cerveau ou du système nerveux périphérique. La consommation de drogues augmente aussi le risque d’infections : le VIH et l’hépatite C (une maladie grave du foie) peuvent être transmis par le partage de matériel d’injection non stérile ou des rapports sexuels non protégés, et des infections cutanées comme la cellulite peuvent survenir après une exposition bactérienne liée aux injections [22]. En santé mentale, consommation et troubles psychiques coexistent souvent : l’anxiété, la dépression ou la schizophrénie peuvent même précéder la dépendance. Les substances peuvent aussi imiter ou masquer les symptômes de la dépression, de la panique, de la paranoïa et du brouillard mémoriel [12].',
+          ],
+          detailGroups: [
+            {
+              heading: 'Effets à court terme de l’alcool',
+              intro: 'Boire au-delà des limites recommandées peut entraîner ces effets nocifs :',
+              bullets: [
+                'Blessures (accidents de la route, chutes, noyades, brûlures)',
+                'Violences telles que l’homicide, le suicide, les violences sexuelles et conjugales',
+                'Intoxication alcoolique : un taux élevé d’alcool dans le sang perturbe la respiration et le rythme cardiaque',
+                'Surdose',
+                'Infections transmissibles sexuellement lors de rapports non protégés',
+                'Fausse couche, mortinaissance et ensemble des troubles causés par l’alcoolisation fœtale durant la grossesse (CDC, 2025).',
+              ],
+            },
+            {
+              heading: 'Effets à long terme de l’alcool',
+              intro: 'Avec le temps, la consommation d’alcool peut provoquer :',
+              bullets: [
+                'Cancers : la consommation de vin rouge, de vin blanc ou de spiritueux est liée au cancer (y compris le cancer du sein chez les femmes), même à faible dose.',
+                'Plus de 20 000 personnes décèdent chaque année de cancers liés à l’alcool aux États-Unis.',
+                'Hypertension artérielle, maladies cardiaques, maladies du foie, AVC, troubles digestifs et affaiblissement du système immunitaire.',
+                'Troubles de santé mentale, difficultés d’apprentissage à l’école ou au travail, troubles de mémoire comme la démence et tensions familiales ou amicales (CDC, 2025).',
+              ],
+            },
           ],
           keyTakeaway:
-            'L’usage prolongé fatigue les organes essentiels et aggrave souvent l’anxiété, la tristesse et les troubles du sommeil.',
-          citationIds: [9, 11, 12],
+            'L’usage prolongé peut endommager les nerfs, augmenter les risques d’infections et de cancers, fatiguer les organes vitaux et aggraver l’anxiété ou la dépression.',
+          citationIds: [9, 11, 12, 22, 23],
         },
         {
           id: 'when-to-seek-help',
           number: '05.',
           question: 'Quand faut-il demander de l’aide ?',
           paragraphs: [
-            'Nul besoin d’attendre une crise grave pour consulter. Parler tôt à un médecin, à une ligne d’aide ou à un centre comme New Beginnings permet un accompagnement plus doux et sécuritaire [13, 14].',
-            'Demandez de l’aide dès que la consommation affecte vos relations, votre santé ou votre sérénité—et consultez un professionnel avant d’arrêter brusquement si vous ressentez des tremblements ou un malaise physique [1, 13, 14].',
+            'Selon les organismes de santé canadiens comme CAMH et Santé Canada, vous devriez envisager de demander de l’aide pour une consommation d’alcool ou de drogues dès qu’elle commence à affecter votre santé, vos relations et votre vie. Il ne faut pas attendre qu’un événement grave survienne. Pensez à demander de l’aide si vous ressentez des envies intenses, une perte de contrôle, une baisse des résultats scolaires ou un malaise physique à l’arrêt. Parler à un adulte de confiance, un conseiller scolaire ou un médecin est une excellente démarche, et vous pouvez aussi contacter Jeunesse, J’écoute au 1-800-668-6868 ou texter CONNECT au 686868.',
           ],
           keyTakeaway:
-            'Il n’est pas nécessaire d’attendre une crise : le bon moment pour demander de l’aide est dès que la consommation inquiète ou cause du tort.',
-          citationIds: [1, 13, 14],
+            'Demandez de l’aide dès que la consommation affecte votre santé, vos études ou vos relations—contactez un adulte de confiance, un médecin ou Jeunesse, J’écoute (1-800-668-6868).',
+          citationIds: [16, 17, 18, 19],
         },
         {
           id: 'types-of-treatment',
@@ -1336,8 +1528,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       nextStepCta: 'Voir les ressources',
     },
     references: {
-      eyebrow: 'Sources vérifiées',
-      title: 'Références APA et liens originaux',
+      title: 'Nos références et sources originales',
       intro:
         'Vous trouverez ci-dessous nos références pour chacune des informations éducatives présentées sur The Dopamine Clarity Project, appuyées sur des guides cliniques et des publications de santé publique. Suivez chaque lien pour accéder directement à la source originale.',
       verifiedNote: 'Format APA 7e édition · Vérifié avec les centres de traitement de Scarborough',
@@ -1348,7 +1539,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       eyebrow: 'Histoires réelles',
       title: 'Journal communautaire',
       intro:
-        'Lire des expériences authentiques aide à se sentir moins seul. Découvrez des récits de rétablissement ou partagez votre vécu en toute confidentialité.',
+        'Le rétablissement est réel et se vit au sein de la communauté. Lisez des réflexions et témoignages partagés par des personnes et des familles, ou publiez votre propre récit en toute maîtrise de votre confidentialité.',
       imageAlt: 'Carnet ouvert en lin posé à côté d’une tasse de tisane chaude à la lumière du matin',
       filterAll: 'Tous les récits',
       topics: {
@@ -1360,7 +1551,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       anonymousLabel: 'Anonyme',
       moderationBannerTitle: 'Révision attentive avant publication',
       moderationBannerBody:
-        'Toutes les soumissions sont examinées et approuvées par notre équipe avant d’être publiées. Vous pouvez rester anonyme, et votre consentement explicite est requis.',
+        'Pour protéger la sécurité et la dignité de chacun, toutes les soumissions sont examinées et approuvées par notre équipe de coordination avant de paraître publiquement sur notre page. Vous pouvez publier de façon anonyme, et votre consentement est requis avant tout partage.',
       formHeading: 'Partager votre histoire',
       formSubheading: 'Votre témoignage peut réconforter une personne qui cherche de l’espoir.',
       nameLabel: 'Votre nom (ou prénom)',
@@ -1374,15 +1565,33 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       consentText:
         'Je donne mon consentement explicite à The Dopamine Clarity Project pour examiner, approuver et publier ce récit sur le site (de manière anonyme si cochée ci-dessus).',
       submitButton: 'Envoyer pour révision',
+      submittingButton: 'Envoi sécurisé en cours...',
       validationError:
         'Veuillez remplir le titre, le récit, votre nom (ou choisir l’anonymat) et cocher la case de consentement.',
+      lengthError:
+        'Veuillez saisir un titre (3 à 140 caractères) et un récit (10 à 4 000 caractères).',
+      submitFailedError:
+        'Impossible d’envoyer votre récit pour le moment. Veuillez vérifier votre connexion et réessayer.',
       submittedSuccessTitle: 'Merci pour votre confiance.',
       submittedSuccessBody:
-        'Votre récit a été ajouté à notre file de révision et sera publié après approbation par notre équipe.',
-      pendingQueueHeading: 'Vos soumissions en attente de révision',
+        'Votre récit a été transmis en toute sécurité à notre équipe de coordination. Il sera publié sur cette page après approbation.',
+      pendingQueueHeading: 'Soumissions en attente',
       pendingBadgeText: 'En attente de révision',
-      approveDemoButton: 'Simuler l’approbation de l’équipe',
-      approvedNote: 'Approuvé et publié dans le Journal ci-dessous.',
+      pendingEmptyText: 'Aucun récit en attente de révision pour le moment.',
+      coordinatorHeading: 'Espace de révision de l’équipe',
+      coordinatorSubtitle:
+        'Connectez-vous avec un compte Google de coordination vérifié pour consulter les récits reçus et publier ceux approuvés.',
+      coordinatorSignInButton: 'Connexion coordonnateur (Google)',
+      coordinatorSignOutButton: 'Se déconnecter',
+      coordinatorSignedInAs: 'Connecté en tant que',
+      coordinatorUnauthorizedNote:
+        'Ce compte Google ne dispose pas des autorisations de révision. Déconnectez-vous ou utilisez un compte coordonnateur vérifié.',
+      approveButton: 'Approuver et publier',
+      declineButton: 'Refuser',
+      unpublishButton: 'Remettre en attente',
+      deleteButton: 'Supprimer',
+      pendingTabLabel: 'En attente',
+      approvedTabLabel: 'Publiés',
       initialStories: [
         {
           id: 'story-1-fr',
@@ -1419,33 +1628,53 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       emergencyBody:
         'En cas de surdose, de sevrage sévère ou de danger immédiat, appelez les secours sans attendre.',
       emergencyCards: [
-        { title: 'Urgences médicales', number: '911', note: 'Intervention d’urgence immédiate 24/7 au Canada' },
-        { title: 'Ligne d’aide en cas de crise', number: '988', note: 'Appelez ou textez au 988 gratuitement, en français ou en anglais' },
-        { title: 'Santé811 Ontario', number: '811', note: 'Parlez à une infirmière autorisée 24/7 (1-866-797-0000)' },
+        {
+          title: 'Urgences médicales',
+          number: '911',
+          note: 'Intervention d’urgence immédiate 24/7 au Canada',
+          apaCitation: 'Gouvernement du Canada. (s. d.). Services d’urgence et 911 au Canada.',
+        },
+        {
+          title: 'Ligne d’aide en cas de crise',
+          number: '988',
+          note: 'Appelez ou textez au 988 gratuitement, en français ou en anglais',
+          apaCitation:
+            'Ligne d’aide en cas de crise de suicide. (s. d.). 988 : Ligne d’aide en cas de crise de suicide. https://988.ca/',
+        },
+        {
+          title: 'Santé811 Ontario',
+          number: '811',
+          note: 'Parlez à une infirmière autorisée 24/7 (1-866-797-0000)',
+          apaCitation:
+            'Gouvernement de l’Ontario. (s. d.). Santé811 : Obtenez des conseils médicaux gratuits jour et nuit. https://www.ontario.ca/fr/page/sante811',
+        },
       ],
       newBeginnings: {
         eyebrow: 'Partenaire à Scarborough',
         title: 'New Beginnings Recovery Home',
         subtitle: 'Centre résidentiel agréé de traitement des dépendances à Scarborough, ON',
-        imageAlt: 'Lever de soleil apaisant sur le lac Ontario près des falaises de Scarborough',
+        imageAlt: 'Façade extérieure de la résidence New Beginnings Recovery Home sur une rue calme et arborée de Scarborough',
         overview:
-          'New Beginnings Recovery Home est un centre agréé CARF situé à Scarborough. Ils vérifient nos contenus éducatifs et accompagnent les personnes vers un rétablissement durable.',
+          'New Beginnings Recovery Home est un centre de traitement résidentiel agréé pour la dépendance aux drogues et à l’alcool ainsi que la santé mentale, situé près des falaises de Scarborough. Ils accompagnent les dépendances, les troubles concomitants (TSPT, dépression, anxiété), la prévention des rechutes, les compétences de vie et la réintégration familiale et communautaire.',
         processHeading: 'Leur processus de traitement',
         processSteps: [
           {
             step: 'Étape 01',
             title: 'Évaluation confidentielle et accueil rapide',
-            detail: 'Un entretien par téléphone ou courriel permet d’organiser une admission rapide et bienveillante.',
+            detail:
+              'Un entretien par téléphone ou courriel permet une admission immédiate, évitant souvent les longues listes d’attente publiques pour accueillir chaque personne en sécurité.',
           },
           {
             step: 'Étape 02',
             title: 'Programme résidentiel de 28 jours',
-            detail: 'Un cadre paisible avec supervision 24/7 et soins médicaux sur appel pour se stabiliser loin des déclencheurs.',
+            detail:
+              'Les clients séjournent dans un environnement chaleureux durant un programme résidentiel de quatre semaines (28 jours) avec supervision 24/7 et soins médicaux sur appel, incluant thérapie individuelle et de groupe (TCC, TCD, SMART Recovery).',
           },
           {
             step: 'Étape 03',
             title: 'Approche globale biopsychosociale',
-            detail: 'Médecins, conseillers, nutritionnistes et thérapeutes familiaux collaborent pour le bien-être physique et mental.',
+            detail:
+              'Une équipe interprofessionnelle — médecins, conseillers en toxicomanie, nutritionnistes, ergothérapeutes et thérapeutes familiaux — collabore au rétablissement physique, émotionnel, social et spirituel.',
           },
           {
             step: 'Étape 04',
@@ -1459,8 +1688,12 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
         emailLabel: 'Courriel',
         websiteLabel: 'Visiter le site de New Beginnings',
         contactCta: 'Contacter pour Scarborough',
+        apaCitation:
+          'New Beginnings Recovery Home. (n.d.). Residential addiction and mental health treatment. https://newbeginningsrecovery.ca/',
       },
       directoryHeading: 'Répertoire de soutien en Ontario et au Canada',
+      directoryNotice:
+        'Ces ressources sont continuellement mises à jour afin d’offrir aux personnes et aux familles le plus grand soutien possible.',
       directoryCategories: {
         all: 'Toutes',
         helpline: 'Lignes 24/7',
@@ -1470,6 +1703,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       },
       visitWebsiteLabel: 'Visiter le site officiel',
       availabilityLabel: 'Disponibilité :',
+      apaCitationLabel: 'Référence APA 7e édition :',
       organizations: [
         {
           id: 'connex',
@@ -1481,6 +1715,8 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           textInfo: 'Texto CONNEX au 247247',
           website: 'https://www.connexontario.ca/',
           availability: '24/7 Gratuit et confidentiel',
+          apaCitation:
+            'ConnexOntario. (n.d.). Mental health, addiction and problem gambling help. https://www.connexontario.ca/',
         },
         {
           id: 'camh',
@@ -1491,6 +1727,8 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           phone: '1-800-463-6273',
           website: 'https://www.camh.ca/',
           availability: 'Soins cliniques et guides en ligne',
+          apaCitation:
+            'Centre for Addiction and Mental Health. (n.d.). Mental health and addiction care. https://www.camh.ca/',
         },
         {
           id: 'raam',
@@ -1500,6 +1738,8 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           description: 'Cliniques sans rendez-vous et sans référence médicale offrant un soutien immédiat pour les troubles liés aux substances.',
           website: 'https://www.metaphi.ca/raam-clinics',
           availability: 'Heures variables selon la ville',
+          apaCitation:
+            'Mentoring, Education, and Clinical Tools for Addiction: Partners in Health Integration. (n.d.). Rapid Access Addiction Medicine (RAAM) clinics. https://www.metaphi.ca/raam-clinics',
         },
         {
           id: 'kids-help',
@@ -1511,6 +1751,8 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           textInfo: 'Texto PARLER au 686868',
           website: 'https://jeunessejecoute.ca/',
           availability: '24/7 Pour les jeunes',
+          apaCitation:
+            'Jeunesse, J’écoute. (s. d.). Soutien gratuit et confidentiel 24/7 pour les jeunes. https://jeunessejecoute.ca/',
         },
         {
           id: 'ccsa',
@@ -1520,16 +1762,45 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           description: 'Recommandations nationales fondées sur des données probantes concernant l’alcool et les drogues.',
           website: 'https://www.ccsa.ca/fr',
           availability: 'Bibliothèque publique en ligne',
+          apaCitation:
+            'Centre canadien sur les dépendances et l’usage de substances. (s. d.). Ressources sur les dépendances et l’usage de substances. https://www.ccsa.ca/fr',
+        },
+        {
+          id: 'alpha-house',
+          name: 'AlphaHouse',
+          category: 'treatment',
+          region: 'Toronto, ON',
+          description:
+            'Programme résidentiel de soutien au rétablissement de 4 mois sans alcool ni drogue pour les hommes, personnes non binaires, hommes trans et personnes bispirituelles (18+) ayant complété un traitement primaire.',
+          phone: '416-469-1700',
+          website: 'https://www.alphahousetoronto.ca/',
+          availability: 'Contacter pour la disponibilité (647 Broadview Ave)',
+          apaCitation:
+            'Alpha House Toronto. (n.d.). Post-treatment residential supportive recovery program. https://www.alphahousetoronto.ca/',
+        },
+        {
+          id: 'madison',
+          name: 'Madison Community Services',
+          category: 'treatment',
+          region: 'Toronto, ON',
+          description:
+            'Organisme communautaire en santé mentale et troubles concomitants offrant gestion de cas, logement avec soutien et programmes culturels pour adultes (16+).',
+          phone: '416-977-1333',
+          website: 'https://madisoncs.org/',
+          availability: 'Services gratuits financés par le public (355 Church St)',
+          apaCitation:
+            'Madison Community Services. (n.d.). Community mental health and supportive housing programs. https://madisoncs.org/',
         },
       ],
     },
     donate: {
       eyebrow: 'Soutenir la cause',
-      title: 'Aidez-nous à garder l’éducation gratuite et accessible.',
+      title: 'Aidez-nous à faire la différence !',
       intro:
-        'Votre soutien permet à notre initiative étudiante d’imprimer des guides multilingues et d’organiser des ateliers pour les familles de l’Ontario.',
-      donationTab: 'Faire un don',
-      volunteerTab: 'Devenir bénévole',
+        'En tant qu’initiative étudiante, les dons de la communauté nous permettent d’élargir notre rayonnement local. Les dons iront vers des organismes et des centres de traitement qui soutiennent directement les personnes souffrant de dépendance.',
+      prototypeNoticeTitle: 'Prototype uniquement · Entièrement volontaire',
+      prototypeNoticeBody:
+        'Veuillez noter que cette section de dons est uniquement un prototype : ce formulaire ne transmet, ne stocke ni ne traite encore aucune information personnelle ou de paiement. Toute contribution est entièrement volontaire.',
       frequencyLabel: 'Fréquence',
       oneTimeLabel: 'Don unique',
       monthlyLabel: 'Soutien mensuel',
@@ -1538,30 +1809,16 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       donorNameLabel: 'Nom complet (ou Anonyme)',
       donorEmailLabel: 'Courriel de confirmation',
       dedicateLabel: 'Message ou dédicace (facultatif)',
-      donateButton: 'Confirmer le soutien',
-      impactHeading: 'L’impact de votre contribution',
+      donateButton: 'Aperçu du soutien (Prototype)',
+      impactHeading: 'L’impact des contributions communautaires',
       impactItems: [
-        { amount: '15 $', description: 'Permet d’imprimer 30 guides multilingues pour les écoles et centres communautaires.' },
-        { amount: '35 $', description: 'Soutient la traduction et l’accessibilité en français, anglais et espagnol.' },
-        { amount: '75 $', description: 'Finance un atelier étudiant de sensibilisation pour les familles à Scarborough.' },
+        'Aide à financer une initiative de sensibilisation menée par des étudiants et des séances éducatives pour les familles à Scarborough.',
+        'Aide à relier les familles aux services de rétablissement et aux réseaux de soutien.',
+        'Nous aide à collaborer avec des organismes locaux et des centres de rétablissement.',
       ],
-      donationSuccessTitle: 'Merci de soutenir les familles de l’Ontario.',
+      donationSuccessTitle: 'Confirmation du prototype affichée (aucune donnée envoyée).',
       donationSuccessBody:
-        'Votre promesse de don est enregistrée. Nos coordinateurs vous contacteront par courriel avec les détails pratiques.',
-      volunteerHeading: 'Rejoignez nos bénévoles',
-      volunteerIntro: 'Participez à la sensibilisation, au design graphique, à la traduction ou à l’organisation d’événements.',
-      volunteerRoleLabel: 'Domaine d’intérêt',
-      volunteerRoles: [
-        'Sensibilisation communautaire et ateliers',
-        'Design graphique et communications',
-        'Documentation et traduction (FR/ES)',
-        'Logistique et événements',
-      ],
-      volunteerAvailabilityLabel: 'Disponibilité hebdomadaire',
-      volunteerMessageLabel: 'Pourquoi souhaitez-vous participer ?',
-      volunteerSubmitButton: 'Envoyer ma candidature',
-      volunteerSuccessTitle: 'Merci pour votre engagement.',
-      volunteerSuccessBody: 'Notre équipe vous répondra bientôt depuis thedopamineclarityproject@gmail.com.',
+        'Comme cette section est actuellement un prototype uniquement, aucune information n’a été transmise, stockée ni traitée. Les dons sont entièrement volontaires.',
     },
     contact: {
       eyebrow: 'Nous joindre',
@@ -1587,9 +1844,10 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       messageLabel: 'Votre message',
       messagePlaceholder: 'Expliquez comment nous pouvons vous aider...',
       submitButton: 'Envoyer le message',
-      successTitle: 'Message reçu avec bienveillance.',
+      successTitle: 'Votre brouillon de courriel prérempli est prêt.',
       successBody:
-        'Merci de nous avoir écrit. Pour une demande urgente concernant Scarborough, appelez également New Beginnings au 1-647-482-6308.',
+        'Votre application de messagerie devrait s’ouvrir avec vos coordonnées et votre message. Si elle ne s’est pas ouverte automatiquement, utilisez le bouton ci-dessous (ou appelez New Beginnings au 1-647-482-6308 pour une aide urgente à Scarborough).',
+      openDraftLabel: 'Ouvrir le brouillon de courriel',
       errorRequired: 'Veuillez indiquer votre nom, un courriel valide et votre message.',
     },
     footer: {
@@ -1632,7 +1890,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
         'No tienes que pasar por esto en soledad. En nuestro sitio web ofrecemos información educativa fácil de entender sobre la adicción al alcohol y las drogas, un espacio seguro para compartir tus experiencias y caminos confiables de recuperación en Ontario para que recibas el mejor apoyo.',
       primaryCta: 'Explorar educación',
       secondaryCta: 'Buscar apoyo y tratamiento',
-      heroImageAlt: 'Lago sereno de Ontario al amanecer rodeado de pinos tranquilos bajo una neblina suave',
+      heroImageAlt: 'Pequeño grupo de personas sentadas juntas en una playa soleada bajo una luz cálida, símbolo de apoyo tranquilo y comunidad',
       heroCaption: 'La recuperación comienza al recibir información precisa y un cuidado compasivo.',
       overviewHeading: 'Tómate un momento para explorar nuestro sitio web',
       overviewIntro:
@@ -1644,7 +1902,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           number: '01.',
           title: 'Sobre Nosotros y Equipo',
           description:
-            'Conoce a los seis estudiantes detrás del proyecto, nuestra misión para reducir el estigma y nuestra verificación con New Beginnings.',
+            'Conoce a los seis estudiantes que fundaron The Dopamine Clarity Project con la misión de reducir el estigma en torno a la adicción en la comunidad.',
           action: 'Conocer al equipo',
         },
         {
@@ -1652,7 +1910,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           number: '02.',
           title: 'Resumen Educativo',
           description:
-            'Respuestas sencillas sobre cómo se desarrolla la adicción, señales visibles, efectos físicos y mentales, y cuándo buscar ayuda.',
+            'Aprende cómo puede desarrollarse la adicción en el cerebro, las señales visibles, los efectos físicos y mentales, y cuándo buscar ayuda.',
           action: 'Leer la guía',
         },
         {
@@ -1676,15 +1934,15 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           number: '05.',
           title: 'Referencias APA',
           description:
-            'Cada dato educativo está respaldado por citas en formato APA con enlaces directos a CAMH, CCSA, NIDA y Health Canada.',
+            'Cada dato educativo en nuestro sitio web está respaldado por citas en formato APA con enlaces directos a las fuentes originales.',
           action: 'Revisar fuentes',
         },
         {
           sectionId: 'donate',
           number: '06.',
-          title: 'Donar y Voluntariado',
+          title: 'Apoyar y Donar',
           description:
-            'Apoya talleres comunitarios, guías impresas multilingües y alcance juvenil contribuyendo o sumándote como voluntario.',
+            'Conoce cómo las donaciones voluntarias impulsan nuestra labor comunitaria y apoyan a centros locales de recuperación.',
           action: 'Apoyar la causa',
         },
       ],
@@ -1716,10 +1974,10 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
         journalShareCta: 'Compartir tu historia con seguridad',
         referencesEyebrow: '05 · Fuentes APA verificadas',
         referencesTitle: 'Cada dato enlazado a fuentes oficiales de salud pública',
-        referencesCta: 'Ver las 15 referencias APA',
+        referencesCta: 'Ver las 23 referencias APA',
         supportEyebrow: '06 · Apoyar y contactar',
         supportTitle: 'Apoya a las familias de Ontario o envíanos un mensaje',
-        donateCta: 'Donar o ser voluntario',
+        donateCta: 'Conocer sobre donaciones',
         contactCta: 'Contactar a New Beginnings o a nosotros',
       },
     },
@@ -1756,44 +2014,44 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
             'Buscamos organizar eventos comunitarios y ofrecer un diario seguro y moderado donde las personas puedan compartir sus experiencias y recordar a otros que nunca están solos.',
         },
       ],
-      teamHeading: 'Nuestro equipo coordinador',
-      teamSubheading: 'Seis estudiantes unidos por el servicio comunitario y la investigación responsable.',
-      communityImageAlt: 'Sala comunitaria iluminada por el sol donde las personas conversan con calidez tomando té',
+      teamHeading: '¡Conoce a nuestro equipo!',
+      teamSubheading: 'Seis estudiantes de secundaria comprometidos con reducir el estigma en torno a la adicción.',
+      communityImageAlt: 'Círculo de manos con pulseras moradas reunidas en señal de unidad y apoyo mutuo',
       members: [
         {
           id: 'isla',
           name: 'Isla Mina',
           role: 'Coordinadora de Alcance y Proyecto',
           statement:
-            '¡Hola, soy Isla! Mi objetivo es asegurar que las familias tengan acceso al conocimiento, los recursos y el apoyo que necesitan para comprender y enfrentar la adicción mediante la educación y el alcance comunitario.',
+            'Dedicada a acercarse a la comunidad y organizar eventos de concientización para garantizar que las familias tengan acceso al conocimiento, los recursos y el apoyo necesarios para comprender y enfrentar la adicción.',
         },
         {
           id: 'aleena',
           name: 'Aleena Hijaz',
           role: 'Coordinadora de Documentación',
           statement:
-            'Dedicada a organizar las guías educativas y verificar cada referencia APA para garantizar información confiable.',
+            'Supervisa la documentación del proyecto y mantiene registros precisos de nuestro progreso para asegurar que todo lo que publicamos refleje fielmente nuestras iniciativas y metas, generando un impacto positivo en la sociedad.',
         },
         {
           id: 'alyna',
           name: 'Alyna Zita Caldeira',
           role: 'Coordinadora de Diseño Gráfico y Comunicaciones',
           statement:
-            'Diseña mensajes visuales cálidos y serenos que reemplazan el miedo y el estigma por claridad.',
+            'Enfocada en crear comunicaciones visuales claras y efectivas que busquen educar al público y reemplazar el miedo y el estigma con calidez y compasión.',
         },
         {
           id: 'marian',
           name: 'Marian Albert',
           role: 'Coordinadora de Diseño Gráfico y Comunicaciones',
           statement:
-            'Crea materiales visuales accesibles que ayudan a las familias a encontrar apoyo con tranquilidad.',
+            'Enfocada en diseñar materiales educativos y recursos visuales de alcance comunitario para ayudar a las familias a recorrer su camino con confianza.',
         },
         {
           id: 'ashwin',
           name: 'Ashwin Austin-Rogesan',
           role: 'Portavoz Comunitario',
           statement:
-            'Representa nuestra misión estudiantil para fomentar conversaciones abiertas y respetuosas sobre la recuperación en Ontario.',
+            'Representa nuestra misión estudiantil ante el público para animar a las personas a mantener conversaciones abiertas y respetuosas sobre la recuperación en todo Ontario.',
         },
         {
           id: 'clark',
@@ -1803,14 +2061,22 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
             'Organiza talleres de concientización, alianzas locales y actividades para voluntarios en la comunidad.',
         },
       ],
+      socialCard: {
+        heading: 'Sigue nuestra labor en Instagram',
+        handle: '@thedopamineclarity',
+        body: '¿Te gustaría apoyar nuestra causa? ¡Síguenos en redes sociales para mantenerte informado, conocer más sobre nuestras iniciativas y descubrir cómo participar!',
+        buttonLabel: 'Visitar @thedopamineclarity en Instagram',
+        url: 'https://www.instagram.com/thedopamineclarity/',
+      },
     },
     education: {
       eyebrow: 'Resumen Educativo',
-      title: 'Comprender la adicción al alcohol y las drogas en palabras sencillas.',
+      title: 'Ayudándote a comprender la adicción al alcohol y las drogas.',
       intro:
-        'La terminología médica puede resultar abrumadora cuando solo buscas claridad. Aquí tienes explicaciones simples, humanas y respaldadas por citas verificadas.',
+        'La terminología médica puede resultar confusa y abrumadora cuando solo buscas respuestas; por eso compartimos explicaciones claras y sencillas, revisadas junto a profesionales reales y respaldadas por investigaciones citadas.',
       plainLanguageNote: 'Haz clic en cualquier número de cita (como [1]) para ver la fuente APA completa.',
-      statsHeading: 'Estadísticas sobre adicciones en Canadá y Ontario',
+      headerImageAlt: 'Escritorio de madera bajo la luz matinal con cuadernos abiertos, lavanda seca y una taza de té tibio',
+      statsHeading: '¿Sabías que...?',
       statsIntro:
         'Conocer qué tan frecuentes son estas situaciones ayuda a recordar que ninguna persona ni familia está sola.',
       statsSourceLabel: 'Fuente: Canadian Mental Health Association (CMHA) Ontario',
@@ -1859,6 +2125,36 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           url: 'https://youtu.be/aTS5OW85Og4?si=lF0Q3Zbo_aPmb6DE',
         },
       ],
+      progressLabel: 'Progreso de lectura',
+      viewAllModeLabel: 'Guía completa',
+      focusModeLabel: 'Un tema a la vez',
+      markReadLabel: 'Marcar tema como leído',
+      markedReadLabel: 'Completado',
+      prevTopicLabel: 'Tema anterior',
+      nextTopicLabel: 'Siguiente tema',
+      mythFactHeading: 'Malentendidos comunes',
+      mythFactIntro: 'Selecciona cualquier tarjeta para descubrir el hecho médico detrás de ideas comunes.',
+      mythLabel: 'Mito común',
+      factLabel: 'Hecho verificado',
+      revealFactLabel: 'Ver hecho',
+      hideFactLabel: 'Ver mito',
+      mythFacts: [
+        {
+          myth: 'Hay que esperar a que ocurra algo grave antes de pedir ayuda.',
+          fact: 'CAMH y Health Canada recomiendan buscar apoyo en cuanto el consumo afecte tu salud, relaciones o vida diaria, sin esperar una crisis.',
+          citationId: 18,
+        },
+        {
+          myth: 'La adicción es solo una falta de fuerza de voluntad.',
+          fact: 'El trastorno por uso de sustancias es una condición médica que altera la dopamina en el cerebro y puede deberse a genética, estrés, salud mental o medicamentos recetados.',
+          citationId: 3,
+        },
+        {
+          myth: 'El tratamiento es exactamente igual para todas las personas.',
+          fact: 'Cada persona es distinta: la recuperación puede combinar manejo médico de abstinencia, terapia (TCC, TDC o familiar) y atención ambulatoria o residencial.',
+          citationId: 7,
+        },
+      ],
       keyTakeawayLabel: 'Resumen',
       sourcesLabel: 'Fuentes citadas:',
       viewReferenceLabel: 'Ver en Referencias APA',
@@ -1893,36 +2189,59 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           number: '03.',
           question: '¿Cómo se manifiesta?',
           paragraphs: [
-            'Muchas personas ocultan su lucha por vergüenza. Las señales tempranas incluyen alejarse de la familia, cambios bruscos de energía o sueño, faltar a responsabilidades o necesitar dosis mayores [1, 10].',
-            'También es común intentar reducir el consumo varias veces sin lograrlo solo, o sentir irritabilidad y temblores al pasar tiempo sin consumir [1, 13].',
+            'Una persona con trastorno por uso de sustancias puede mostrar síntomas como consumir mayor cantidad o durante más tiempo, no poder reducir ni controlar su consumo y no cumplir con sus responsabilidades en el trabajo, la escuela o el hogar. El consumo se convierte en la actividad más importante y prioritaria (MyHealthAlberta, 2026). También suele dedicar mucho tiempo a conseguir la sustancia ignorando otras actividades (HealthLink BC, 2023).',
+            'Al intentar detener o reducir el consumo, puede experimentar síntomas de abstinencia físicos y mentales: sudoración, temblores, náuseas, fatiga, antojos intensos, ansiedad, inquietud, cambios bruscos de ánimo y tristeza. La adicción al alcohol puede manifestarse con lagunas mentales, cambios de personalidad y negación del problema.',
           ],
           keyTakeaway:
-            'Las señales frecuentes incluyen alejarse de seres queridos, cambios en el sueño o ánimo, necesitar mayor cantidad y dificultad para reducir el consumo.',
-          citationIds: [1, 10, 13],
+            'Las señales incluyen aumentar el consumo, dificultad para reducirlo, descuidar responsabilidades y presentar abstinencia física o lagunas mentales.',
+          citationIds: [20, 21],
         },
         {
           id: 'body-and-mind',
           number: '04.',
           question: '¿Cómo afecta físicamente al cuerpo y la salud mental?',
           paragraphs: [
-            'Físicamente, sobrecarga el hígado, el corazón, el estómago y el sistema nervioso, causando fatiga crónica y alteración del descanso profundo [9, 11].',
-            'Mentalmente, puede empeorar la ansiedad, la depresión y la claridad emocional. Cuidar la salud física y emocional al mismo tiempo acelera una recuperación estable [11, 12].',
+            'Físicamente, el consumo intenso de alcohol o drogas puede generar un estrés continuo en el hígado, el corazón, el estómago, el sistema inmunitario y el sistema nervioso, además de afectar el sueño profundo, elevar la presión arterial, causar fatiga crónica y aumentar los riesgos a largo plazo de enfermedades cardíacas y hepáticas [9, 11].',
+            'Los inhalantes pueden dañar o destruir las células nerviosas del cerebro o del sistema nervioso periférico. El consumo de drogas también aumenta el riesgo de infecciones como el VIH y la hepatitis C (una enfermedad hepática grave) al compartir material de inyección sin higiene o mantener relaciones sexuales sin protección, además de infecciones cutáneas como la celulitis por exposición bacteriana en inyecciones [22]. En salud mental, el consumo y los trastornos mentales pueden coexistir, y afecciones como ansiedad, depresión o esquizofrenia pueden aparecer antes de la adicción. Las sustancias incluso pueden imitar u ocultar los síntomas de depresión, pánico, paranoia y confusión mental [12].',
+          ],
+          detailGroups: [
+            {
+              heading: 'Efectos del consumo de alcohol a corto plazo',
+              intro: 'Beber por encima del límite puede provocar estos efectos dañinos:',
+              bullets: [
+                'Lesiones (accidentes de tránsito, caídas, ahogamientos, quemaduras)',
+                'Violencia como homicidio, suicidio, violencia sexual y violencia de pareja',
+                'Intoxicación alcohólica: niveles altos en sangre afectan la respiración y el ritmo cardíaco',
+                'Sobredosis',
+                'Infecciones de transmisión sexual por relaciones sin protección',
+                'Aborto espontáneo, muerte fetal y trastorno del espectro alcohólico fetal durante el embarazo (CDC, 2025).',
+              ],
+            },
+            {
+              heading: 'Efectos del consumo de alcohol a largo plazo',
+              intro: 'Con el tiempo, el consumo de alcohol puede causar:',
+              bullets: [
+                'Cáncer: el consumo de vino tinto, vino blanco y licores se asocia con cáncer (incluido el cáncer de mama en mujeres), incluso con cualquier cantidad.',
+                'Más de 20,000 personas fallecen cada año en Estados Unidos por cánceres relacionados con el alcohol.',
+                'Presión arterial alta, enfermedades cardíacas y hepáticas, accidentes cerebrovasculares, problemas digestivos y debilitamiento del sistema inmunitario.',
+                'Problemas de salud mental, dificultades de aprendizaje en la escuela o el trabajo, problemas de memoria como demencia y conflictos familiares o de amistad (CDC, 2025).',
+              ],
+            },
           ],
           keyTakeaway:
-            'El consumo prolongado desgasta órganos importantes y suele empeorar la ansiedad, la tristeza y los problemas de sueño.',
-          citationIds: [9, 11, 12],
+            'El consumo prolongado puede dañar los nervios, elevar el riesgo de infecciones y cáncer, afectar órganos vitales y empeorar la ansiedad, la tristeza o la memoria.',
+          citationIds: [9, 11, 12, 22, 23],
         },
         {
           id: 'when-to-seek-help',
           number: '05.',
           question: '¿Cuándo debe buscar ayuda una persona?',
           paragraphs: [
-            'Buscar orientación temprana con un médico, línea de apoyo o un centro como New Beginnings hace que el proceso sea más seguro y sereno [13, 14].',
-            'Pide apoyo si afecta tu salud, tus relaciones o tu tranquilidad —y consulta a un profesional antes de suspender de golpe si hay síntomas físicos de abstinencia [1, 13, 14].',
+            'Según organizaciones de salud en Canadá como CAMH y Health Canada, debes considerar buscar ayuda por abuso de alcohol o drogas en el momento en que empiecen a afectar tu salud, tus relaciones y tu vida. No debes esperar a que ocurra algo grave para pedir apoyo. Considera buscar ayuda si sientes antojos intensos, pérdida de control sobre la cantidad consumida, bajo rendimiento académico o malestar físico al detenerte. Hablar con un adulto, consejero escolar o médico es una excelente idea, y también puedes comunicarte con Kids Help Phone llamando al 1-800-668-6868 o enviando CONNECT por texto al 686868.',
           ],
           keyTakeaway:
-            'No hace falta esperar una crisis. El mejor momento para pedir ayuda es cuando el consumo empieza a causar preocupación o malestar.',
-          citationIds: [1, 13, 14],
+            'Busca ayuda en cuanto el consumo afecte tu salud, estudios o relaciones—habla con un adulto, médico o Kids Help Phone (1-800-668-6868 o texto CONNECT al 686868).',
+          citationIds: [16, 17, 18, 19],
         },
         {
           id: 'types-of-treatment',
@@ -1993,8 +2312,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       nextStepCta: 'Ver recursos y tratamiento',
     },
     references: {
-      eyebrow: 'Fuentes verificadas',
-      title: 'Referencias APA y enlaces originales',
+      title: 'Nuestras referencias y fuentes originales',
       intro:
         'A continuación se presentan nuestras referencias para cada dato educativo de The Dopamine Clarity Project, respaldadas por guías clínicas y publicaciones de salud pública. Haz clic en cualquier enlace para ir directamente a la fuente original.',
       verifiedNote: 'Formato APA 7.ª edición · Revisado junto a centros de tratamiento en Scarborough',
@@ -2005,7 +2323,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       eyebrow: 'Historias Reales',
       title: 'Diario Comunitario',
       intro:
-        'Leer experiencias sinceras nos recuerda que nadie está solo. Explora reflexiones de recuperación o comparte tu propia historia con control total de tu privacidad.',
+        'La recuperación es real y ocurre en comunidad. Lee reflexiones y diarios compartidos por personas y familias, o comparte tu propia historia con total control sobre tu privacidad.',
       imageAlt: 'Cuaderno abierto de lino junto a una taza de té tibio bajo luz suave de mañana',
       filterAll: 'Todas las historias',
       topics: {
@@ -2017,7 +2335,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       anonymousLabel: 'Anónimo',
       moderationBannerTitle: 'Revisión cuidadosa antes de publicar',
       moderationBannerBody:
-        'Todas las historias enviadas son revisadas y aprobadas por nuestro equipo antes de publicarse. Puedes permanecer en el anonimato y se requiere tu consentimiento explícito.',
+        'Para proteger la seguridad y dignidad de todas las personas, nuestro equipo coordinador revisa y aprueba cada envío antes de publicarlo en la página. Puedes publicar de forma anónima y se requiere consentimiento antes de compartir.',
       formHeading: 'Comparte tu historia',
       formSubheading: 'Tu experiencia puede brindar consuelo a quien hoy busca esperanza.',
       nameLabel: 'Tu nombre (o seudónimo)',
@@ -2031,15 +2349,33 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       consentText:
         'Doy mi consentimiento explícito para que The Dopamine Clarity Project revise, apruebe y publique mi historia en este sitio web (de forma anónima si fue seleccionada).',
       submitButton: 'Enviar para revisión',
+      submittingButton: 'Enviando de forma segura...',
       validationError:
         'Por favor completa el título, tu historia, tu nombre (o elige anonimato) y marca la casilla de consentimiento.',
+      lengthError:
+        'Ingresa un título (3 a 140 caracteres) y una historia (10 a 4,000 caracteres).',
+      submitFailedError:
+        'No se pudo enviar tu historia en este momento. Verifica tu conexión e inténtalo de nuevo.',
       submittedSuccessTitle: 'Gracias por confiar tu historia.',
       submittedSuccessBody:
-        'Tu relato entró en nuestra cola de revisión. Un coordinador lo leerá con cuidado y lo publicará tras aprobarlo.',
-      pendingQueueHeading: 'Tus envíos en espera de revisión',
+        'Tu relato se envió de forma segura al equipo de coordinación. Una vez aprobado, aparecerá publicado en esta página.',
+      pendingQueueHeading: 'Envíos pendientes',
       pendingBadgeText: 'Pendiente de revisión',
-      approveDemoButton: 'Simular aprobación del equipo',
-      approvedNote: 'Aprobado y publicado en el Diario.',
+      pendingEmptyText: 'No hay historias esperando revisión en este momento.',
+      coordinatorHeading: 'Revisión del equipo coordinador',
+      coordinatorSubtitle:
+        'Inicia sesión con una cuenta de Google autorizada del equipo para revisar historias recibidas y aprobar su publicación.',
+      coordinatorSignInButton: 'Acceso coordinador con Google',
+      coordinatorSignOutButton: 'Cerrar sesión',
+      coordinatorSignedInAs: 'Sesión iniciada como',
+      coordinatorUnauthorizedNote:
+        'Esta cuenta de Google no tiene permisos de coordinación. Cierra sesión o cambia a una cuenta autorizada.',
+      approveButton: 'Aprobar y publicar',
+      declineButton: 'Rechazar',
+      unpublishButton: 'Mover a pendientes',
+      deleteButton: 'Eliminar',
+      pendingTabLabel: 'Pendientes',
+      approvedTabLabel: 'Publicadas',
       initialStories: [
         {
           id: 'story-1-es',
@@ -2076,33 +2412,53 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       emergencyBody:
         'Si alguien presenta una sobredosis, abstinencia severa o peligro inmediato, busca ayuda de emergencia ahora mismo.',
       emergencyCards: [
-        { title: 'Emergencias Médicas', number: '911', note: 'Respuesta de emergencia inmediata las 24 horas en Canadá' },
-        { title: 'Línea de Crisis 988', number: '988', note: 'Llama o envía texto al 988 gratis en cualquier momento' },
-        { title: 'Health811 Ontario', number: '811', note: 'Habla con una enfermera registrada 24/7 (1-866-797-0000)' },
+        {
+          title: 'Emergencias Médicas',
+          number: '911',
+          note: 'Respuesta de emergencia inmediata las 24 horas en Canadá',
+          apaCitation: 'Gobierno de Canadá. (s. f.). Servicios de emergencia y 911 en Canadá.',
+        },
+        {
+          title: 'Línea de Crisis 988',
+          number: '988',
+          note: 'Llama o envía texto al 988 gratis en cualquier momento',
+          apaCitation:
+            'Suicide Crisis Helpline. (s. f.). 988: Línea de ayuda en crisis de suicidio. https://988.ca/',
+        },
+        {
+          title: 'Health811 Ontario',
+          number: '811',
+          note: 'Habla con una enfermera registrada 24/7 (1-866-797-0000)',
+          apaCitation:
+            'Gobierno de Ontario. (s. f.). Health811: Consejos médicos gratuitos las 24 horas. https://www.ontario.ca/page/health811',
+        },
       ],
       newBeginnings: {
         eyebrow: 'Socio destacado en Scarborough',
         title: 'New Beginnings Recovery Home',
         subtitle: 'Centro residencial acreditado de tratamiento en Scarborough, Ontario',
-        imageAlt: 'Amanecer sereno sobre el lago Ontario junto a los acantilados de Scarborough',
+        imageAlt: 'Exterior de la residencia New Beginnings Recovery Home en una calle tranquila y arbolada de Scarborough',
         overview:
-          'New Beginnings Recovery Home es un centro acreditado por CARF en Scarborough. Revisan nuestra información educativa y ofrecen cuidado residencial cercano y estructurado.',
+          'New Beginnings Recovery Home es un centro residencial autorizado para el tratamiento de adicciones al alcohol y las drogas y salud mental, ubicado cerca de Scarborough Bluffs. Apoyan adicciones, trastornos concurrentes como TEPT, depresión y ansiedad, prevención de recaídas, habilidades para la vida y reintegración familiar y comunitaria.',
         processHeading: 'Su proceso de tratamiento',
         processSteps: [
           {
             step: 'Paso 01',
             title: 'Evaluación confidencial e ingreso ágil',
-            detail: 'Comunícate por teléfono o correo para una conversación de admisión sin largas listas de espera.',
+            detail:
+              'Comunícate por teléfono o correo para una conversación de admisión. New Beginnings ofrece ingresos inmediatos, evitando largas listas de espera públicas para recibirte de forma segura.',
           },
           {
             step: 'Paso 02',
             title: 'Programa residencial de 28 días',
-            detail: 'Estancia tranquila con supervisión 24/7 y atención médica disponible para enfocarse en la recuperación.',
+            detail:
+              'Los pacientes permanecen en un entorno hogareño durante un programa residencial de cuatro semanas (28 días), con supervisión 24/7 y atención médica disponible, incluyendo terapia individual y grupal como TCC, TDC y SMART Recovery.',
           },
           {
             step: 'Paso 03',
             title: 'Equipo integral biopsicosocial',
-            detail: 'Médicos, consejeros, nutricionistas y terapeutas familiares trabajan juntos en tu bienestar físico y emocional.',
+            detail:
+              'Un equipo interprofesional —médicos, consejeros en adicciones, nutricionistas, terapeutas ocupacionales y terapeutas familiares— trabaja unido en la recuperación física, emocional, social y espiritual.',
           },
           {
             step: 'Paso 04',
@@ -2116,8 +2472,12 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
         emailLabel: 'Correo electrónico',
         websiteLabel: 'Visitar sitio web de New Beginnings',
         contactCta: 'Consultar atención en Scarborough',
+        apaCitation:
+          'New Beginnings Recovery Home. (s. f.). Tratamiento residencial de adicciones y salud mental. https://newbeginningsrecovery.ca/',
       },
       directoryHeading: 'Directorio de apoyo en Ontario y Canadá',
+      directoryNotice:
+        'Estos recursos se están actualizando continuamente para brindar a las personas y familias la mayor cantidad de apoyo posible.',
       directoryCategories: {
         all: 'Todos',
         helpline: 'Líneas 24/7',
@@ -2127,6 +2487,7 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       },
       visitWebsiteLabel: 'Visitar sitio oficial',
       availabilityLabel: 'Disponibilidad:',
+      apaCitationLabel: 'Referencia APA 7.ª edición:',
       organizations: [
         {
           id: 'connex',
@@ -2138,6 +2499,8 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           textInfo: 'Texto CONNEX al 247247',
           website: 'https://www.connexontario.ca/',
           availability: '24/7 Gratuito y confidencial',
+          apaCitation:
+            'ConnexOntario. (s. f.). Ayuda en salud mental, adicciones y ludopatía. https://www.connexontario.ca/',
         },
         {
           id: 'camh',
@@ -2148,6 +2511,8 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           phone: '1-800-463-6273',
           website: 'https://www.camh.ca/',
           availability: 'Atención clínica y guías en línea',
+          apaCitation:
+            'Centre for Addiction and Mental Health. (s. f.). Atención en salud mental y adicciones. https://www.camh.ca/',
         },
         {
           id: 'raam',
@@ -2157,6 +2522,8 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           description: 'Clínicas sin cita previa ni referencia médica para atención inmediata en consumo de sustancias.',
           website: 'https://www.metaphi.ca/raam-clinics',
           availability: 'Horarios según la ciudad',
+          apaCitation:
+            'Mentoring, Education, and Clinical Tools for Addiction: Partners in Health Integration. (s. f.). Clínicas de Acceso Rápido en Medicina de Adicciones (RAAM). https://www.metaphi.ca/raam-clinics',
         },
         {
           id: 'kids-help',
@@ -2168,6 +2535,8 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           textInfo: 'Texto CONNECT al 686868',
           website: 'https://kidshelpphone.ca/',
           availability: '24/7 Apoyo juvenil',
+          apaCitation:
+            'Kids Help Phone. (s. f.). Apoyo gratuito y confidencial 24/7 para jóvenes. https://kidshelpphone.ca/',
         },
         {
           id: 'ccsa',
@@ -2177,16 +2546,45 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
           description: 'Guías nacionales basadas en evidencia sobre salud, alcohol y reducción del estigma.',
           website: 'https://www.ccsa.ca/',
           availability: 'Biblioteca pública en línea',
+          apaCitation:
+            'Canadian Centre on Substance Use and Addiction. (s. f.). Recursos sobre uso de sustancias y adicción. https://www.ccsa.ca/',
+        },
+        {
+          id: 'alpha-house',
+          name: 'AlphaHouse',
+          category: 'treatment',
+          region: 'Toronto, ON',
+          description:
+            'Programa residencial de apoyo a la recuperación de 4 meses libre de alcohol y drogas para hombres, personas no binarias, hombres trans y personas de dos espíritus (18+) que hayan completado tratamiento primario.',
+          phone: '416-469-1700',
+          website: 'https://www.alphahousetoronto.ca/',
+          availability: 'Consultar disponibilidad e ingreso (647 Broadview Ave)',
+          apaCitation:
+            'Alpha House Toronto. (s. f.). Programa residencial de apoyo a la recuperación. https://www.alphahousetoronto.ca/',
+        },
+        {
+          id: 'madison',
+          name: 'Madison Community Services',
+          category: 'treatment',
+          region: 'Toronto, ON',
+          description:
+            'Organización comunitaria de salud mental y uso concurrente de sustancias que brinda gestión de casos, vivienda de apoyo, espacios abiertos y servicios en español para adultos (16+).',
+          phone: '416-977-1333',
+          website: 'https://madisoncs.org/',
+          availability: 'Servicios gratuitos financiados públicamente (355 Church St)',
+          apaCitation:
+            'Madison Community Services. (s. f.). Programas comunitarios de salud mental y vivienda de apoyo. https://madisoncs.org/',
         },
       ],
     },
     donate: {
       eyebrow: 'Apoya la causa',
-      title: 'Ayúdanos a mantener la educación gratuita y accesible.',
+      title: '¡Ayúdanos a marcar la diferencia!',
       intro:
-        'Tu aporte permite a nuestra organización estudiantil imprimir guías multilingües y organizar talleres comunitarios para familias en Ontario.',
-      donationTab: 'Hacer una donación',
-      volunteerTab: 'Ser voluntario',
+        'Como iniciativa estudiantil, las donaciones de la comunidad nos permiten ampliar nuestro alcance local. Las donaciones se destinarán a organizaciones y centros de tratamiento que apoyan directamente a quienes sufren de adicción.',
+      prototypeNoticeTitle: 'Solo prototipo · Totalmente voluntario',
+      prototypeNoticeBody:
+        'Ten en cuenta que esta sección de donaciones es solo un prototipo: este formulario aún no transmite, almacena ni procesa pagos ni datos personales. Cualquier contribución es completamente voluntaria.',
       frequencyLabel: 'Frecuencia',
       oneTimeLabel: 'Aporte único',
       monthlyLabel: 'Apoyo mensual',
@@ -2195,30 +2593,16 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       donorNameLabel: 'Nombre completo (o Anónimo)',
       donorEmailLabel: 'Correo de confirmación',
       dedicateLabel: 'Mensaje o dedicatoria opcional',
-      donateButton: 'Confirmar aporte',
-      impactHeading: 'Cómo ayuda tu contribución',
+      donateButton: 'Vista previa de aporte (Prototipo)',
+      impactHeading: 'Cómo ayudan las contribuciones comunitarias',
       impactItems: [
-        { amount: '$15', description: 'Imprime 30 guías multilingües para escuelas y centros comunitarios.' },
-        { amount: '$35', description: 'Apoya traducciones y accesibilidad en inglés, francés y español.' },
-        { amount: '$75', description: 'Financia un taller estudiantil de concientización para familias en Scarborough.' },
+        'Ayuda a financiar una iniciativa de concientización liderada por estudiantes y sesiones educativas para familias en Scarborough.',
+        'Ayuda a conectar a las familias con servicios de recuperación y redes de apoyo.',
+        'Nos ayuda a colaborar con organizaciones locales y centros de recuperación.',
       ],
-      donationSuccessTitle: 'Gracias por apoyar a las familias de Ontario.',
+      donationSuccessTitle: 'Confirmación de prototipo mostrada (no se enviaron datos).',
       donationSuccessBody:
-        'Tu intención de aporte quedó registrada. Nuestros coordinadores te escribirán por correo con los pasos siguientes.',
-      volunteerHeading: 'Súmate como voluntario',
-      volunteerIntro: 'Colabora en alcance comunitario, diseño, traducción o logística de eventos.',
-      volunteerRoleLabel: 'Área de interés',
-      volunteerRoles: [
-        'Alcance comunitario y talleres familiares',
-        'Diseño gráfico y comunicaciones',
-        'Documentación y traducción (FR/ES)',
-        'Eventos y logística',
-      ],
-      volunteerAvailabilityLabel: 'Disponibilidad semanal',
-      volunteerMessageLabel: '¿Por qué te gustaría participar?',
-      volunteerSubmitButton: 'Enviar solicitud',
-      volunteerSuccessTitle: 'Agradecemos tu entusiasmo por ayudar.',
-      volunteerSuccessBody: 'Nuestro equipo te contactará pronto desde thedopamineclarityproject@gmail.com.',
+        'Dado que esta sección de donaciones es actualmente solo un prototipo, no se transmitió, almacenó ni procesó ninguna información. Las contribuciones son completamente voluntarias.',
     },
     contact: {
       eyebrow: 'Contáctanos',
@@ -2244,9 +2628,10 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       messageLabel: 'Tu consulta o mensaje',
       messagePlaceholder: 'Cuéntanos cómo podemos ayudarte...',
       submitButton: 'Enviar mensaje',
-      successTitle: 'Mensaje recibido con cuidado.',
+      successTitle: 'Tu borrador de correo prellenado está listo.',
       successBody:
-        'Gracias por escribirnos. Para consultas urgentes sobre Scarborough, llama también a New Beginnings al 1-647-482-6308.',
+        'Tu aplicación de correo debería abrirse con tus datos de contacto y mensaje. Si no se abrió automáticamente, usa el botón de abajo (o llama a New Beginnings al 1-647-482-6308 para atención urgente en Scarborough).',
+      openDraftLabel: 'Abrir borrador de correo',
       errorRequired: 'Por favor ingresa tu nombre, un correo válido y tu mensaje.',
     },
     footer: {

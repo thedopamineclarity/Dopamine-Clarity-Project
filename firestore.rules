@@ -1,0 +1,157 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global safety net: deny all by default
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Reusable primitives
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isBootstrappedAdmin() {
+      return isSignedIn()
+        && request.auth.token.email_verified == true
+        && (
+          request.auth.token.email == 'minaisla52@gmail.com'
+          || request.auth.token.email == 'thedopamineclarityproject@gmail.com'
+        );
+    }
+
+    function isAdmin() {
+      return isBootstrappedAdmin()
+        || (
+          isSignedIn()
+          && request.auth.token.email_verified == true
+          && exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+        );
+    }
+
+    function isValidStorySubmission(data) {
+      return data.keys().hasAll([
+          'title',
+          'author',
+          'isAnonymous',
+          'date',
+          'topic',
+          'content',
+          'status',
+          'consentGiven',
+          'createdAt',
+          'updatedAt'
+        ])
+        && data.keys().hasOnly([
+          'title',
+          'author',
+          'isAnonymous',
+          'date',
+          'topic',
+          'content',
+          'status',
+          'consentGiven',
+          'createdAt',
+          'updatedAt'
+        ])
+        && data.title is string
+        && data.title.size() >= 3
+        && data.title.size() <= 140
+        && data.isAnonymous is bool
+        && data.author is string
+        && data.author.size() >= 1
+        && data.author.size() <= 80
+        && (!data.isAnonymous || data.author == 'Anonymous')
+        && data.date is string
+        && data.date.size() >= 4
+        && data.date.size() <= 40
+        && data.topic in ['recovery', 'family', 'hope', 'community']
+        && data.content is string
+        && data.content.size() >= 10
+        && data.content.size() <= 4000
+        && data.status in ['pending', 'approved', 'rejected']
+        && data.consentGiven is bool
+        && data.consentGiven == true
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidAdminUser(data) {
+      return data.keys().hasAll(['email', 'role', 'createdAt'])
+        && data.keys().hasOnly(['email', 'role', 'createdAt'])
+        && data.email is string
+        && data.email.size() >= 5
+        && data.email.size() <= 120
+        && data.role == 'coordinator'
+        && data.createdAt is timestamp;
+    }
+
+    match /story_submissions/{storyId} {
+      // Public visitors can read only approved stories; verified coordinators can read any
+      allow get: if isValidId(storyId) && (existing().status == 'approved' || isAdmin());
+
+      // Secure list query: enforces status == 'approved' for public queries, zero get()/exists() calls
+      allow list: if resource.data.status == 'approved' || isBootstrappedAdmin();
+
+      // Visitors can submit a story into the pending moderation queue with strict validation
+      allow create: if isValidId(storyId)
+        && isValidStorySubmission(incoming())
+        && incoming().status == 'pending'
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+
+      // Only verified coordinators can approve, reject, or moderate submissions
+      allow update: if isValidId(storyId)
+        && isAdmin()
+        && isValidStorySubmission(incoming())
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && (
+          (
+            existing().status == 'pending'
+            && incoming().status in ['approved', 'rejected']
+            && incoming().diff(existing()).affectedKeys().hasOnly(['status', 'updatedAt'])
+          ) || (
+            incoming().status in ['pending', 'approved', 'rejected']
+            && incoming().diff(existing()).affectedKeys().hasOnly([
+              'title',
+              'author',
+              'isAnonymous',
+              'topic',
+              'content',
+              'status',
+              'updatedAt'
+            ])
+          )
+        );
+
+      // Only verified coordinators can remove submissions
+      allow delete: if isValidId(storyId) && isAdmin();
+    }
+
+    match /admins/{adminId} {
+      allow get: if isValidId(adminId) && (
+        isBootstrappedAdmin() || (isSignedIn() && request.auth.token.email_verified == true && request.auth.uid == adminId)
+      );
+      allow list: if isBootstrappedAdmin();
+      allow create: if isValidId(adminId)
+        && isBootstrappedAdmin()
+        && isValidAdminUser(incoming())
+        && incoming().createdAt == request.time;
+      allow update: if false;
+      allow delete: if isValidId(adminId) && isBootstrappedAdmin();
+    }
+  }
+}

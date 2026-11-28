@@ -1,7 +1,8 @@
 import React from 'react';
-import { ShieldCheck } from 'lucide-react';
+import { ExternalLink, Instagram, ShieldCheck } from 'lucide-react';
 import { SiteContent } from '../../data/translations';
 import { ResilientImage } from '../ResilientImage';
+import { ScrollReveal } from '../ScrollReveal';
 
 interface AboutSectionProps {
   content: SiteContent;
@@ -13,7 +14,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ content }) => {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-8 py-12 space-y-16">
       {/* Header & Mission Story */}
-      <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
+      <ScrollReveal>
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
         <div className="lg:col-span-7 space-y-6">
           <p className="text-sm font-medium text-[#5841A3]">{about.eyebrow}</p>
           <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#231F29] leading-tight [text-wrap:balance]">
@@ -33,7 +35,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ content }) => {
         <div className="lg:col-span-5 flex flex-col justify-between gap-6">
           <div className="overflow-hidden rounded-xl border border-[#DFD8EC] bg-[#F2EEF8] flex-1">
             <ResilientImage
-              src={`${import.meta.env.BASE_URL}src/assets/images/community_circle_support_1795746664233.jpg`}
+              src={`${import.meta.env.BASE_URL}assets/aistudio/aboutus_ff85b654.webp`}
               alt={about.communityImageAlt}
               aspectClassName="aspect-[4/3]"
               className="w-full h-full object-cover min-h-[260px]"
@@ -50,10 +52,12 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ content }) => {
             </p>
           </div>
         </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
       {/* Goals & Plans */}
-      <section className="pt-10 border-t border-[#DFD8EC] space-y-8">
+      <ScrollReveal>
+        <section className="pt-10 border-t border-[#DFD8EC] space-y-8">
         <h2 className="font-serif text-2xl sm:text-3xl font-medium text-[#231F29]">
           {about.plansHeading}
         </h2>
@@ -75,10 +79,12 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ content }) => {
             </div>
           ))}
         </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
       {/* Team Members */}
-      <section className="pt-10 border-t border-[#DFD8EC] space-y-8">
+      <ScrollReveal>
+        <section className="pt-10 border-t border-[#DFD8EC] space-y-8">
         <div className="space-y-2 max-w-2xl">
           <h2 className="font-serif text-2xl sm:text-3xl font-medium text-[#231F29]">
             {about.teamHeading}
@@ -104,7 +110,37 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ content }) => {
             </article>
           ))}
         </div>
-      </section>
+        </section>
+      </ScrollReveal>
+
+      {/* Social Media Outreach */}
+      <ScrollReveal>
+        <section className="rounded-xl bg-[#F2EEF8] border border-[#DFD8EC] p-6 sm:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div className="space-y-2.5 max-w-2xl">
+            <div className="flex items-center gap-2.5 text-sm font-medium text-[#5841A3]">
+              <Instagram className="w-4 h-4 shrink-0" aria-hidden="true" />
+              <span>{about.socialCard.handle}</span>
+            </div>
+            <h2 className="font-serif text-2xl sm:text-3xl font-medium text-[#231F29] [text-wrap:balance]">
+              {about.socialCard.heading}
+            </h2>
+            <p className="text-sm sm:text-base text-[#433D4D] leading-relaxed">
+              {about.socialCard.body}
+            </p>
+          </div>
+
+          <a
+            href={about.socialCard.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-3 text-sm font-medium text-[#FAF8FC] bg-[#5841A3] hover:bg-[#463287] rounded-lg transition-colors whitespace-nowrap shrink-0 self-start md:self-auto"
+          >
+            <Instagram className="w-4 h-4 shrink-0" aria-hidden="true" />
+            <span>{about.socialCard.buttonLabel}</span>
+            <ExternalLink className="w-4 h-4 shrink-0" aria-hidden="true" />
+          </a>
+        </section>
+      </ScrollReveal>
     </div>
   );
 };

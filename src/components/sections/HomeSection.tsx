@@ -13,6 +13,7 @@ import { APA_REFERENCES } from '../../data/references';
 import { SectionId } from '../../types';
 import { ResilientImage } from '../ResilientImage';
 import { BrandMark } from '../BrandMark';
+import { ScrollReveal } from '../ScrollReveal';
 
 interface HomeSectionProps {
   content: SiteContent;
@@ -81,7 +82,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
             <figure className="h-full flex flex-col">
               <div className="flex-1 overflow-hidden rounded-xl border border-[#DFD8EC] bg-[#F2EEF8]">
                 <ResilientImage
-                  src={`${import.meta.env.BASE_URL}src/assets/images/hero_sanctuary_morning_1795746663422.jpg`}
+                  src={`${import.meta.env.BASE_URL}assets/aistudio/istockphoto-2189324442-612x612_e20d1b08.jpg`}
                   alt={home.heroImageAlt}
                   aspectClassName="aspect-[16/9]"
                   className="w-full h-full object-cover min-h-[280px] lg:min-h-[380px]"
@@ -96,7 +97,8 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
       </section>
 
       {/* Immediate Quiet Support Strip */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-8">
+      <ScrollReveal>
+        <section className="max-w-6xl mx-auto px-4 sm:px-8">
         <div className="rounded-xl bg-[#F2EEF8] border border-[#DFD8EC] p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
           <div className="space-y-1.5 max-w-xl">
             <div className="flex items-center gap-2 text-[#5841A3] font-medium text-sm">
@@ -118,10 +120,12 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
       {/* Quick Section Jump Grid */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-8">
+      <ScrollReveal>
+        <section className="max-w-6xl mx-auto px-4 sm:px-8">
         <div className="max-w-2xl space-y-3 mb-8">
           <h2 className="font-serif text-3xl sm:text-4xl font-medium text-[#231F29] [text-wrap:balance]">
             {home.overviewHeading}
@@ -162,10 +166,12 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
             </button>
           ))}
         </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
       {/* EXPANDED PREVIEW 01: About Us & Team Spotlight */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-8 pt-6 border-t border-[#DFD8EC]">
+      <ScrollReveal>
+        <section className="max-w-6xl mx-auto px-4 sm:px-8 pt-6 border-t border-[#DFD8EC]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
           <div className="lg:col-span-6 space-y-5 flex flex-col justify-center">
             <p className="text-sm font-medium text-[#5841A3]">{home.expanded.aboutEyebrow}</p>
@@ -215,7 +221,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
           <div className="lg:col-span-6">
             <div className="h-full overflow-hidden rounded-xl border border-[#DFD8EC] bg-[#F2EEF8]">
               <ResilientImage
-                src={`${import.meta.env.BASE_URL}src/assets/images/community_circle_support_1795746664233.jpg`}
+                src={`${import.meta.env.BASE_URL}assets/aistudio/aboutus_ff85b654.webp`}
                 alt={about.communityImageAlt}
                 aspectClassName="aspect-[4/3]"
                 className="w-full h-full object-cover min-h-[280px]"
@@ -223,10 +229,12 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
       {/* EXPANDED PREVIEW 02: Interactive Educational Overview */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-8 pt-10 border-t border-[#DFD8EC] space-y-8">
+      <ScrollReveal>
+        <section className="max-w-6xl mx-auto px-4 sm:px-8 pt-10 border-t border-[#DFD8EC] space-y-8">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
           <div className="space-y-2 max-w-2xl">
             <p className="text-sm font-medium text-[#5841A3]">
@@ -356,14 +364,16 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
       {/* EXPANDED PREVIEW 03: New Beginnings & Ontario Resources */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-8 pt-10 border-t border-[#DFD8EC] space-y-8">
+      <ScrollReveal>
+        <section className="max-w-6xl mx-auto px-4 sm:px-8 pt-10 border-t border-[#DFD8EC] space-y-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch rounded-xl bg-[#FAF8FC] border border-[#DFD8EC] overflow-hidden">
           <div className="lg:col-span-5 bg-[#F2EEF8]">
             <ResilientImage
-              src={`${import.meta.env.BASE_URL}src/assets/images/scarborough_bluffs_calm_1795746664860.jpg`}
+              src={`${import.meta.env.BASE_URL}assets/aistudio/1exterior_2e1e3910.jpg`}
               alt={resources.newBeginnings.imageAlt}
               aspectClassName="aspect-[4/3]"
               className="w-full h-full object-cover min-h-[250px]"
@@ -418,10 +428,12 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
       {/* EXPANDED PREVIEW 04 & 05: Community Journal + APA References */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-8 pt-6">
+      <ScrollReveal>
+        <section className="max-w-6xl mx-auto px-4 sm:px-8 pt-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Journal Spotlight */}
           <div className="lg:col-span-7 rounded-xl bg-[#F2EEF8] border border-[#DFD8EC] p-6 sm:p-8 flex flex-col justify-between space-y-6">
@@ -511,10 +523,12 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
             </button>
           </div>
         </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
       {/* EXPANDED PREVIEW 06: Support, Donate & Clinical Verification Banner */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-8 space-y-8">
+      <ScrollReveal>
+        <section className="max-w-6xl mx-auto px-4 sm:px-8 space-y-8">
         <div className="rounded-xl bg-[#F2EEF8] border border-[#DFD8EC] p-6 sm:p-8 space-y-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div className="space-y-1.5 max-w-2xl">
@@ -547,16 +561,16 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {donate.impactItems.map((item) => (
+            {donate.impactItems.map((description, idx) => (
               <div
-                key={item.amount}
-                className="p-4 rounded-lg bg-[#FAF8FC] border border-[#DFD8EC] space-y-1"
+                key={idx}
+                className="p-4 rounded-lg bg-[#FAF8FC] border border-[#DFD8EC] space-y-1.5"
               >
-                <p className="font-mono text-base font-medium text-[#5841A3] tabular-nums">
-                  {item.amount}
+                <p className="font-mono text-xs font-medium text-[#5841A3] tabular-nums">
+                  0{idx + 1}.
                 </p>
                 <p className="text-xs sm:text-sm text-[#433D4D] leading-relaxed">
-                  {item.description}
+                  {description}
                 </p>
               </div>
             ))}
@@ -583,7 +597,8 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
             <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </button>
         </div>
-      </section>
+        </section>
+      </ScrollReveal>
     </div>
   );
 };
